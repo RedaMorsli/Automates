@@ -1,0 +1,68 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://assets/fonts/font_name.tres" type="DynamicFont" id=1]
+[ext_resource path="res://src/ui/AutomateItem.gd" type="Script" id=2]
+
+[sub_resource type="Theme" id=1]
+
+[node name="Item" type="ColorRect"]
+anchor_right = 1.0
+margin_top = 20.0
+margin_right = 6.10352e-05
+margin_bottom = 160.0
+rect_min_size = Vector2( 0, 140 )
+theme = SubResource( 1 )
+color = Color( 0.2, 0.231373, 0.309804, 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+anchor_right = 1.0
+margin_bottom = 140.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+custom_constants/margin_right = 20
+custom_constants/margin_top = 20
+custom_constants/margin_left = 20
+custom_constants/margin_bottom = 20
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="VContainer" type="HBoxContainer" parent="MarginContainer"]
+margin_left = 20.0
+margin_top = 20.0
+margin_right = 730.0
+margin_bottom = 120.0
+rect_min_size = Vector2( 0, 100 )
+alignment = 1
+script = ExtResource( 2 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Nom" type="Button" parent="MarginContainer/VContainer"]
+margin_right = 596.0
+margin_bottom = 100.0
+hint_tooltip = "Lancer l'automate"
+size_flags_horizontal = 3
+size_flags_vertical = 3
+custom_fonts/font = ExtResource( 1 )
+custom_colors/font_color = Color( 1, 1, 1, 1 )
+custom_constants/hseparation = 20
+text = "Nom de l'automate"
+flat = true
+align = 0
+
+[node name="Editer" type="Button" parent="MarginContainer/VContainer"]
+margin_left = 600.0
+margin_right = 710.0
+margin_bottom = 100.0
+hint_tooltip = "Editer l'automate"
+custom_fonts/font = ExtResource( 1 )
+custom_colors/font_color = Color( 0.494118, 0.423529, 1, 1 )
+text = "Editer"
+flat = true
+[connection signal="pressed" from="MarginContainer/VContainer/Nom" to="MarginContainer/VContainer" method="_on_automate_clicked_pressed"]
+[connection signal="pressed" from="MarginContainer/VContainer/Editer" to="MarginContainer/VContainer" method="_on_edit_automate__pressed"]
