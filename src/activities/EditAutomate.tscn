@@ -1,0 +1,145 @@
+[gd_scene load_steps=6 format=2]
+
+[ext_resource path="res://assets/fonts/Comfortaa-Bold.ttf" type="DynamicFontData" id=1]
+
+[sub_resource type="Theme" id=2]
+
+[sub_resource type="DynamicFont" id=1]
+
+[sub_resource type="DynamicFont" id=3]
+size = 30
+font_data = ExtResource( 1 )
+
+[sub_resource type="DynamicFont" id=4]
+size = 30
+font_data = ExtResource( 1 )
+
+[node name="EditAutomate" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+size_flags_horizontal = 3
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="TabContainer" type="TabContainer" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_top = 20.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme = SubResource( 2 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Editer" type="Tabs" parent="TabContainer"]
+visible = false
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 4.0
+margin_top = 32.0
+margin_right = -4.0
+margin_bottom = -4.0
+custom_fonts/font = SubResource( 1 )
+
+[node name="Paramètres" type="Tabs" parent="TabContainer"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_top = 50.0
+margin_bottom = -4.0
+size_flags_horizontal = 3
+
+[node name="MarginContainer" type="MarginContainer" parent="TabContainer/Paramètres"]
+margin_right = 750.0
+margin_bottom = 85.0
+size_flags_horizontal = 3
+custom_constants/margin_right = 20
+custom_constants/margin_top = 20
+custom_constants/margin_left = 20
+custom_constants/margin_bottom = 20
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="VBoxContainer" type="VBoxContainer" parent="TabContainer/Paramètres/MarginContainer"]
+margin_left = 20.0
+margin_top = 20.0
+margin_right = 730.0
+margin_bottom = 286.0
+size_flags_horizontal = 3
+custom_constants/separation = 30
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Nom" type="HBoxContainer" parent="TabContainer/Paramètres/MarginContainer/VBoxContainer"]
+margin_right = 710.0
+margin_bottom = 45.0
+size_flags_horizontal = 3
+
+[node name="Label" type="Label" parent="TabContainer/Paramètres/MarginContainer/VBoxContainer/Nom"]
+margin_top = 5.0
+margin_right = 305.0
+margin_bottom = 40.0
+custom_fonts/font = SubResource( 3 )
+text = "Nom de l'automate "
+
+[node name="LineEdit" type="LineEdit" parent="TabContainer/Paramètres/MarginContainer/VBoxContainer/Nom"]
+margin_left = 309.0
+margin_right = 710.0
+margin_bottom = 45.0
+size_flags_horizontal = 3
+custom_fonts/font = SubResource( 4 )
+
+[node name="Alphabet" type="HBoxContainer" parent="TabContainer/Paramètres/MarginContainer/VBoxContainer"]
+margin_top = 75.0
+margin_right = 710.0
+margin_bottom = 120.0
+size_flags_horizontal = 3
+
+[node name="Label" type="Label" parent="TabContainer/Paramètres/MarginContainer/VBoxContainer/Alphabet"]
+margin_top = 5.0
+margin_right = 291.0
+margin_bottom = 40.0
+custom_fonts/font = SubResource( 3 )
+text = "Alphabet d'entrée "
+
+[node name="LineEdit" type="LineEdit" parent="TabContainer/Paramètres/MarginContainer/VBoxContainer/Alphabet"]
+margin_left = 295.0
+margin_right = 710.0
+margin_bottom = 45.0
+hint_tooltip = "(ex: abc, 01, ab01...)"
+size_flags_horizontal = 3
+custom_fonts/font = SubResource( 4 )
+text = "abc"
+
+[node name="Check1" type="HBoxContainer" parent="TabContainer/Paramètres/MarginContainer/VBoxContainer"]
+margin_top = 150.0
+margin_right = 710.0
+margin_bottom = 193.0
+size_flags_horizontal = 3
+
+[node name="Label" type="CheckBox" parent="TabContainer/Paramètres/MarginContainer/VBoxContainer/Check1"]
+margin_right = 710.0
+margin_bottom = 43.0
+size_flags_horizontal = 3
+custom_fonts/font = SubResource( 3 )
+custom_constants/hseparation = 30
+text = "Simple"
+align = 1
+
+[node name="Check2" type="HBoxContainer" parent="TabContainer/Paramètres/MarginContainer/VBoxContainer"]
+margin_top = 223.0
+margin_right = 710.0
+margin_bottom = 266.0
+size_flags_horizontal = 3
+
+[node name="Label" type="CheckBox" parent="TabContainer/Paramètres/MarginContainer/VBoxContainer/Check2"]
+margin_right = 710.0
+margin_bottom = 43.0
+size_flags_horizontal = 3
+custom_fonts/font = SubResource( 3 )
+custom_constants/hseparation = 30
+text = "Déterministe"
+align = 1

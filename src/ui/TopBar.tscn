@@ -11,7 +11,8 @@
 
 [node name="TopBar" type="Control"]
 anchor_right = 1.0
-margin_bottom = 104.0
+anchor_bottom = 1.0
+size_flags_horizontal = 3
 script = ExtResource( 6 )
 __meta__ = {
 "_edit_use_anchors_": false
@@ -20,12 +21,14 @@ __meta__ = {
 [node name="Panel" type="ColorRect" parent="."]
 margin_right = 750.0
 margin_bottom = 104.0
+size_flags_horizontal = 3
 theme = SubResource( 1 )
 color = Color( 0.2, 0.231373, 0.309804, 1 )
 
 [node name="MarginContainer" type="MarginContainer" parent="Panel"]
 margin_right = 750.0
 margin_bottom = 104.0
+size_flags_horizontal = 3
 custom_constants/margin_right = 20
 custom_constants/margin_top = 20
 custom_constants/margin_left = 20
@@ -39,6 +42,7 @@ margin_left = 20.0
 margin_top = 20.0
 margin_right = 730.0
 margin_bottom = 84.0
+size_flags_horizontal = 3
 alignment = 1
 __meta__ = {
 "_edit_use_anchors_": false
