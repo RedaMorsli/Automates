@@ -1,125 +1,113 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=9 format=2]
 
-[ext_resource path="res://assets/fonts/Comfortaa-Bold.ttf" type="DynamicFontData" id=1]
-[ext_resource path="res://src/activities/Visual.tscn" type="PackedScene" id=2]
-[ext_resource path="res://assets/icones/flèches_initial.png" type="Texture" id=3]
-[ext_resource path="res://assets/icones/cercle_etat.png" type="Texture" id=4]
+[ext_resource path="res://src/entities/Etat.tscn" type="PackedScene" id=1]
+[ext_resource path="res://assets/icones/delete_etat.png" type="Texture" id=2]
+[ext_resource path="res://src/activities/EditCamera.gd" type="Script" id=3]
+[ext_resource path="res://src/activities/EditAutomate.gd" type="Script" id=4]
 [ext_resource path="res://assets/fonts/font_button.tres" type="DynamicFont" id=5]
+[ext_resource path="res://assets/icones/new_etat.png" type="Texture" id=7]
+[ext_resource path="res://assets/icones/edit.png" type="Texture" id=8]
+[ext_resource path="res://assets/icones/new_istc.png" type="Texture" id=9]
 
-[sub_resource type="DynamicFont" id=1]
-size = 60
-font_data = ExtResource( 1 )
+[node name="EditAutomate" type="Node2D"]
+script = ExtResource( 4 )
 
-[sub_resource type="DynamicFont" id=2]
-size = 60
-font_data = ExtResource( 1 )
+[node name="Etats" type="Node2D" parent="."]
 
-[node name="EditAutomate" type="Control"]
-anchor_right = 1.0
-anchor_bottom = 1.0
-size_flags_horizontal = 3
-__meta__ = {
-"_edit_use_anchors_": false
-}
+[node name="Etat" parent="Etats" instance=ExtResource( 1 )]
+position = Vector2( 617.048, 303.741 )
 
-[node name="Editer" type="Panel" parent="."]
-anchor_right = 1.0
-anchor_bottom = 1.0
-__meta__ = {
-"_edit_use_anchors_": false
-}
+[node name="Instructions" type="Node2D" parent="."]
 
-[node name="MarginContainer" type="MarginContainer" parent="Editer"]
-anchor_right = 1.0
-anchor_bottom = 1.0
-custom_constants/margin_right = 20
-custom_constants/margin_top = 20
-custom_constants/margin_left = 20
-custom_constants/margin_bottom = 20
-__meta__ = {
-"_edit_use_anchors_": false
-}
+[node name="EditCamera" type="Camera2D" parent="."]
+position = Vector2( 640, 360 )
+current = true
+script = ExtResource( 3 )
 
-[node name="VBoxContainer" type="VBoxContainer" parent="Editer/MarginContainer"]
-margin_left = 20.0
-margin_top = 20.0
-margin_right = 1260.0
-margin_bottom = 700.0
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="HBoxContainer" type="HBoxContainer" parent="Editer/MarginContainer/VBoxContainer"]
-margin_right = 1240.0
-margin_bottom = 107.0
-alignment = 1
-
-[node name="AddEtat" type="Button" parent="Editer/MarginContainer/VBoxContainer/HBoxContainer"]
-margin_right = 618.0
-margin_bottom = 107.0
-size_flags_horizontal = 3
+[node name="PopupMenuEtat" type="PopupMenu" parent="EditCamera"]
+margin_left = -640.0
+margin_top = -360.0
+margin_right = -290.0
+margin_bottom = -259.0
 custom_fonts/font = ExtResource( 5 )
-text = "Nouveau Etat"
-icon = ExtResource( 4 )
+custom_constants/vseparation = 20
+custom_constants/hseparation = 20
+items = [ "Nouvelle Instruction", ExtResource( 9 ), 0, false, false, 0, 0, null, "", false, "Editer", ExtResource( 8 ), 0, false, false, 1, 0, null, "", false, "Supprimer", ExtResource( 2 ), 0, false, false, 2, 0, null, "", false ]
 
-[node name="AddInstruction" type="Button" parent="Editer/MarginContainer/VBoxContainer/HBoxContainer"]
-margin_left = 622.0
-margin_right = 1240.0
-margin_bottom = 107.0
-size_flags_horizontal = 3
+[node name="PopupMenuVoid" type="PopupMenu" parent="EditCamera"]
+margin_left = -640.0
+margin_top = -360.0
+margin_right = -384.0
+margin_bottom = -310.0
 custom_fonts/font = ExtResource( 5 )
-text = "Instruction"
-icon = ExtResource( 3 )
+custom_constants/vseparation = 20
+custom_constants/hseparation = 20
+items = [ "Nouveau état", ExtResource( 7 ), 0, false, false, 0, 0, null, "", false ]
 
-[node name="ViewportContainer" type="ViewportContainer" parent="Editer/MarginContainer/VBoxContainer"]
-margin_top = 111.0
-margin_right = 1240.0
-margin_bottom = 576.0
+[node name="NewEtatDialog" type="ConfirmationDialog" parent="EditCamera"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -640.0
+margin_top = -360.0
+margin_right = -440.0
+margin_bottom = -264.0
+window_title = "Nouveau Etat"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="VBoxContainer" type="VBoxContainer" parent="EditCamera/NewEtatDialog"]
+margin_left = 8.0
+margin_top = 8.0
+margin_right = 192.0
+margin_bottom = 60.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="HBoxContainer" type="HBoxContainer" parent="EditCamera/NewEtatDialog/VBoxContainer"]
+margin_right = 184.0
+margin_bottom = 24.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
-stretch = true
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
-[node name="Visual" parent="Editer/MarginContainer/VBoxContainer/ViewportContainer" instance=ExtResource( 2 )]
-size = Vector2( 1240, 465 )
-handle_input_locally = false
-render_target_update_mode = 3
+[node name="Label" type="Label" parent="EditCamera/NewEtatDialog/VBoxContainer/HBoxContainer"]
+margin_top = 5.0
+margin_right = 91.0
+margin_bottom = 19.0
+text = "Nom de l'état "
 
-[node name="HBoxContainer2" type="HBoxContainer" parent="Editer/MarginContainer/VBoxContainer"]
-margin_top = 580.0
-margin_right = 1240.0
-margin_bottom = 680.0
-rect_min_size = Vector2( 0, 100 )
-custom_constants/separation = 50
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="Moins" type="Label" parent="Editer/MarginContainer/VBoxContainer/HBoxContainer2"]
-margin_top = 16.0
-margin_right = 23.0
-margin_bottom = 84.0
-custom_fonts/font = SubResource( 1 )
-text = "-"
-
-[node name="HSlider" type="HSlider" parent="Editer/MarginContainer/VBoxContainer/HBoxContainer2"]
-margin_left = 73.0
-margin_right = 1157.0
-margin_bottom = 100.0
+[node name="LineEdit" type="LineEdit" parent="EditCamera/NewEtatDialog/VBoxContainer/HBoxContainer"]
+margin_left = 95.0
+margin_right = 184.0
+margin_bottom = 24.0
 size_flags_horizontal = 3
-size_flags_vertical = 1
-min_value = 0.2
-max_value = 4.0
-step = 0.5
-value = 1.0
+size_flags_vertical = 4
+max_length = 4
 
-[node name="Plus" type="Label" parent="Editer/MarginContainer/VBoxContainer/HBoxContainer2"]
-margin_left = 1207.0
-margin_top = 16.0
-margin_right = 1240.0
-margin_bottom = 84.0
-custom_fonts/font = SubResource( 2 )
-text = "+"
-[connection signal="value_changed" from="Editer/MarginContainer/VBoxContainer/HBoxContainer2/HSlider" to="Editer/MarginContainer/VBoxContainer/ViewportContainer/Visual" method="_on_zoom_value_changed"]
+[node name="HBoxContainer2" type="HBoxContainer" parent="EditCamera/NewEtatDialog/VBoxContainer"]
+margin_top = 28.0
+margin_right = 184.0
+margin_bottom = 52.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+alignment = 1
+
+[node name="Label" type="CheckBox" parent="EditCamera/NewEtatDialog/VBoxContainer/HBoxContainer2"]
+margin_left = 28.0
+margin_right = 93.0
+margin_bottom = 24.0
+size_flags_vertical = 0
+text = "Initial"
+
+[node name="Label2" type="CheckBox" parent="EditCamera/NewEtatDialog/VBoxContainer/HBoxContainer2"]
+margin_left = 97.0
+margin_right = 155.0
+margin_bottom = 24.0
+size_flags_vertical = 0
+text = "Final"
+[connection signal="right_click_etat" from="Etats/Etat" to="." method="_on_Etat_right_click_etat"]
+[connection signal="popup_hide" from="EditCamera/PopupMenuEtat" to="." method="_on_PopupMenuEtat_popup_hide"]
+[connection signal="id_pressed" from="EditCamera/PopupMenuVoid" to="." method="_on_PopupMenuVoid_id_pressed"]
