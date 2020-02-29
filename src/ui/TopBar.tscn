@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://assets/fonts/font_dyn.tres" type="DynamicFont" id=1]
 [ext_resource path="res://assets/icones/add_normal.png" type="Texture" id=2]
@@ -6,6 +6,7 @@
 [ext_resource path="res://assets/icones/setting_pressed.png" type="Texture" id=4]
 [ext_resource path="res://assets/icones/add_pressed_1.png" type="Texture" id=5]
 [ext_resource path="res://src/ui/TopBar.gd" type="Script" id=6]
+[ext_resource path="res://src/ui/AutomateList.tscn" type="PackedScene" id=7]
 
 [sub_resource type="Theme" id=1]
 
@@ -13,22 +14,28 @@
 anchor_right = 1.0
 anchor_bottom = 1.0
 size_flags_horizontal = 3
+size_flags_vertical = 3
 script = ExtResource( 6 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="Panel" type="ColorRect" parent="."]
-margin_right = 750.0
-margin_bottom = 104.0
+anchor_right = 1.0
+anchor_bottom = 1.0
 size_flags_horizontal = 3
+size_flags_vertical = 3
 theme = SubResource( 1 )
 color = Color( 0.2, 0.231373, 0.309804, 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
 [node name="MarginContainer" type="MarginContainer" parent="Panel"]
-margin_right = 750.0
-margin_bottom = 104.0
+anchor_right = 1.0
+anchor_bottom = 1.0
 size_flags_horizontal = 3
+size_flags_vertical = 3
 custom_constants/margin_right = 20
 custom_constants/margin_top = 20
 custom_constants/margin_left = 20
@@ -37,20 +44,27 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="CenterContainer" type="HBoxContainer" parent="Panel/MarginContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="Panel/MarginContainer"]
 margin_left = 20.0
 margin_top = 20.0
-margin_right = 730.0
-margin_bottom = 84.0
+margin_right = 1260.0
+margin_bottom = 700.0
 size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="CenterContainer" type="HBoxContainer" parent="Panel/MarginContainer/VBoxContainer"]
+margin_right = 1240.0
+margin_bottom = 61.0
+size_flags_horizontal = 3
+size_flags_vertical = 0
 alignment = 1
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Settings" type="TextureButton" parent="Panel/MarginContainer/CenterContainer"]
+[node name="Settings" type="TextureButton" parent="Panel/MarginContainer/VBoxContainer/CenterContainer"]
 margin_right = 50.0
-margin_bottom = 64.0
+margin_bottom = 61.0
 grow_horizontal = 0
 grow_vertical = 0
 hint_tooltip = "Paramètres"
@@ -59,10 +73,10 @@ texture_normal = ExtResource( 3 )
 texture_pressed = ExtResource( 4 )
 stretch_mode = 5
 
-[node name="Logo" type="Label" parent="Panel/MarginContainer/CenterContainer"]
+[node name="Logo" type="Label" parent="Panel/MarginContainer/VBoxContainer/CenterContainer"]
 margin_left = 54.0
-margin_right = 656.0
-margin_bottom = 64.0
+margin_right = 1186.0
+margin_bottom = 61.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 custom_fonts/font = ExtResource( 1 )
@@ -70,14 +84,23 @@ custom_colors/font_color = Color( 1, 1, 1, 1 )
 text = "AUTOMATES"
 align = 1
 
-[node name="AddAutomate" type="TextureButton" parent="Panel/MarginContainer/CenterContainer"]
-margin_left = 660.0
-margin_right = 710.0
-margin_bottom = 64.0
+[node name="AddAutomate" type="TextureButton" parent="Panel/MarginContainer/VBoxContainer/CenterContainer"]
+margin_left = 1190.0
+margin_right = 1240.0
+margin_bottom = 61.0
 hint_tooltip = "Nouveau automate"
 size_flags_vertical = 3
 texture_normal = ExtResource( 2 )
 texture_pressed = ExtResource( 5 )
 stretch_mode = 5
-[connection signal="pressed" from="Panel/MarginContainer/CenterContainer/Settings" to="." method="_on_Settings_pressed"]
-[connection signal="pressed" from="Panel/MarginContainer/CenterContainer/AddAutomate" to="." method="_on_AddAutomate_pressed"]
+
+[node name="List" parent="Panel/MarginContainer/VBoxContainer" instance=ExtResource( 7 )]
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_top = 65.0
+margin_right = 1240.0
+margin_bottom = 680.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+[connection signal="pressed" from="Panel/MarginContainer/VBoxContainer/CenterContainer/Settings" to="." method="_on_Settings_pressed"]
+[connection signal="pressed" from="Panel/MarginContainer/VBoxContainer/CenterContainer/AddAutomate" to="." method="_on_AddAutomate_pressed"]

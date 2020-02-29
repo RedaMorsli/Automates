@@ -6,11 +6,11 @@
 [ext_resource path="res://assets/icones/cercle_etat.png" type="Texture" id=4]
 [ext_resource path="res://assets/fonts/font_button.tres" type="DynamicFont" id=5]
 
-[sub_resource type="DynamicFont" id=5]
+[sub_resource type="DynamicFont" id=1]
 size = 60
 font_data = ExtResource( 1 )
 
-[sub_resource type="DynamicFont" id=6]
+[sub_resource type="DynamicFont" id=2]
 size = 60
 font_data = ExtResource( 1 )
 
@@ -43,19 +43,19 @@ __meta__ = {
 [node name="VBoxContainer" type="VBoxContainer" parent="Editer/MarginContainer"]
 margin_left = 20.0
 margin_top = 20.0
-margin_right = 730.0
-margin_bottom = 1314.0
+margin_right = 1260.0
+margin_bottom = 700.0
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="HBoxContainer" type="HBoxContainer" parent="Editer/MarginContainer/VBoxContainer"]
-margin_right = 710.0
+margin_right = 1240.0
 margin_bottom = 107.0
 alignment = 1
 
 [node name="AddEtat" type="Button" parent="Editer/MarginContainer/VBoxContainer/HBoxContainer"]
-margin_right = 353.0
+margin_right = 618.0
 margin_bottom = 107.0
 size_flags_horizontal = 3
 custom_fonts/font = ExtResource( 5 )
@@ -63,8 +63,8 @@ text = "Nouveau Etat"
 icon = ExtResource( 4 )
 
 [node name="AddInstruction" type="Button" parent="Editer/MarginContainer/VBoxContainer/HBoxContainer"]
-margin_left = 357.0
-margin_right = 710.0
+margin_left = 622.0
+margin_right = 1240.0
 margin_bottom = 107.0
 size_flags_horizontal = 3
 custom_fonts/font = ExtResource( 5 )
@@ -73,8 +73,8 @@ icon = ExtResource( 3 )
 
 [node name="ViewportContainer" type="ViewportContainer" parent="Editer/MarginContainer/VBoxContainer"]
 margin_top = 111.0
-margin_right = 710.0
-margin_bottom = 1190.0
+margin_right = 1240.0
+margin_bottom = 576.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 stretch = true
@@ -83,14 +83,14 @@ __meta__ = {
 }
 
 [node name="Visual" parent="Editer/MarginContainer/VBoxContainer/ViewportContainer" instance=ExtResource( 2 )]
-size = Vector2( 710, 1079 )
+size = Vector2( 1240, 465 )
 handle_input_locally = false
 render_target_update_mode = 3
 
 [node name="HBoxContainer2" type="HBoxContainer" parent="Editer/MarginContainer/VBoxContainer"]
-margin_top = 1194.0
-margin_right = 710.0
-margin_bottom = 1294.0
+margin_top = 580.0
+margin_right = 1240.0
+margin_bottom = 680.0
 rect_min_size = Vector2( 0, 100 )
 custom_constants/separation = 50
 __meta__ = {
@@ -101,12 +101,12 @@ __meta__ = {
 margin_top = 16.0
 margin_right = 23.0
 margin_bottom = 84.0
-custom_fonts/font = SubResource( 5 )
+custom_fonts/font = SubResource( 1 )
 text = "-"
 
 [node name="HSlider" type="HSlider" parent="Editer/MarginContainer/VBoxContainer/HBoxContainer2"]
 margin_left = 73.0
-margin_right = 627.0
+margin_right = 1157.0
 margin_bottom = 100.0
 size_flags_horizontal = 3
 size_flags_vertical = 1
@@ -116,10 +116,10 @@ step = 0.5
 value = 1.0
 
 [node name="Plus" type="Label" parent="Editer/MarginContainer/VBoxContainer/HBoxContainer2"]
-margin_left = 677.0
+margin_left = 1207.0
 margin_top = 16.0
-margin_right = 710.0
+margin_right = 1240.0
 margin_bottom = 84.0
-custom_fonts/font = SubResource( 6 )
+custom_fonts/font = SubResource( 2 )
 text = "+"
 [connection signal="value_changed" from="Editer/MarginContainer/VBoxContainer/HBoxContainer2/HSlider" to="Editer/MarginContainer/VBoxContainer/ViewportContainer/Visual" method="_on_zoom_value_changed"]
