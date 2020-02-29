@@ -16,3 +16,7 @@ func _ready():
 	instruction.etat_debut = etat1
 	instruction.etat_fin = etat2
 	$Node2D/Instructions.add_child(instruction)
+
+
+func _on_zoom_value_changed(value):
+	$Camera2D.zoom = Vector2(value, value)

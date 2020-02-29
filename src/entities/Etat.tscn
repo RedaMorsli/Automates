@@ -13,26 +13,25 @@ radius = 50.7248
 size = 31
 font_data = ExtResource( 5 )
 
-[node name="Etat" type="Node2D"]
+[node name="Etat" type="RigidBody2D"]
+mode = 1
 script = ExtResource( 1 )
 
-[node name="Area2D" type="Area2D" parent="."]
-
-[node name="SpriteEtat" type="Sprite" parent="Area2D"]
+[node name="SpriteEtat" type="Sprite" parent="."]
 texture = ExtResource( 3 )
 
-[node name="SpriteInitial" type="Sprite" parent="Area2D"]
+[node name="SpriteInitial" type="Sprite" parent="."]
 position = Vector2( -55.869, -53.434 )
 texture = ExtResource( 2 )
 
-[node name="SpriteFinal" type="Sprite" parent="Area2D"]
+[node name="SpriteFinal" type="Sprite" parent="."]
 texture = ExtResource( 4 )
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 visible = false
 shape = SubResource( 1 )
 
-[node name="Nom" type="Label" parent="Area2D"]
+[node name="Nom" type="Label" parent="."]
 margin_left = -20.3771
 margin_top = -15.8488
 margin_right = 19.6229
@@ -43,5 +42,4 @@ align = 1
 __meta__ = {
 "_edit_use_anchors_": false
 }
-[connection signal="input_event" from="Area2D" to="." method="_on_etat_input_event"]
-[connection signal="mouse_entered" from="Area2D" to="." method="_on_Area2D_mouse_entered"]
+[connection signal="input_event" from="." to="." method="_on_Etat_input_event"]

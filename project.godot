@@ -19,6 +19,10 @@ config/name="Automates"
 run/main_scene="res://src/activities/MainMenu.tscn"
 config/icon="res://icon.png"
 
+[autoload]
+
+App="*res://src/activities/App.tscn"
+
 [display]
 
 window/size/width=750
