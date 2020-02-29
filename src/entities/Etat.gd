@@ -1,16 +1,26 @@
 extends Node2D
 
 
-# Declare member variables here. Examples:
-# var a = 2
-# var b = "text"
+var nom : String
+var final : bool = false
+var initial : bool = false
 
-
-# Called when the node enters the scene tree for the first time.
 func _ready():
-	pass # Replace with function body.
+	$Area2D/Nom.text = nom
+	if not final:
+		$Area2D/SpriteFinal.hide()
+	if not initial:
+		$Area2D/SpriteInitial.hide()
 
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-#func _process(delta):
-#	pass
+func _process(delta):
+	if Input.is_action_pressed("click"):
+		print("clicked:")
+
+
+func _on_etat_input_event(viewport, event, shape_idx):
+	print("input")
+
+
+func _on_Area2D_mouse_entered():
+	print("entred")
