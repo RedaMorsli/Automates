@@ -17,22 +17,26 @@ script = ExtResource( 6 )
 [node name="Visual" type="Node2D" parent="."]
 script = ExtResource( 4 )
 
+[node name="Instructions" type="Node2D" parent="Visual"]
+
 [node name="Etats" type="Node2D" parent="Visual"]
 
 [node name="Etat" parent="Visual/Etats" instance=ExtResource( 1 )]
 position = Vector2( 423.731, 332.38 )
+nom = "S0"
 initial = true
 
 [node name="Etat2" parent="Visual/Etats" instance=ExtResource( 1 )]
-position = Vector2( 798.038, 339.842 )
+position = Vector2( 986.996, 363.218 )
 nom = "S1"
-final = true
 
-[node name="Instructions" type="Node2D" parent="Visual"]
+[node name="Etat3" parent="Visual/Etats" instance=ExtResource( 1 )]
+position = Vector2( 1401.92, 353.478 )
+nom = "S2"
+final = true
 
 [node name="EditCamera" type="Camera2D" parent="Visual"]
 position = Vector2( 960, 540 )
-current = true
 limit_left = -1280
 limit_top = -720
 limit_right = 2560
@@ -40,38 +44,42 @@ limit_bottom = 1440
 script = ExtResource( 3 )
 is_camera_control_enabeled = false
 
-[node name="PopupMenuEtat" type="PopupMenu" parent="Visual/EditCamera"]
-margin_left = -640.0
-margin_top = -360.0
-margin_right = -290.0
-margin_bottom = -259.0
+[node name="Popups" type="Node" parent="Visual"]
+
+[node name="PopupMenuEtat" type="PopupMenu" parent="Visual/Popups"]
+margin_left = 320.0
+margin_top = 180.0
+margin_right = 670.0
+margin_bottom = 280.0
 custom_fonts/font = ExtResource( 5 )
 custom_constants/vseparation = 20
 custom_constants/hseparation = 20
-items = [ "Nouvelle Instruction", ExtResource( 9 ), 0, false, false, 0, 0, null, "", false, "Editer", ExtResource( 8 ), 0, false, false, 1, 0, null, "", false, "Supprimer", ExtResource( 2 ), 0, false, false, 2, 0, null, "", false ]
+items = [ "Editer", ExtResource( 8 ), 0, false, false, 0, 0, null, "", false, "Supprimer", ExtResource( 2 ), 0, false, false, 1, 0, null, "", false ]
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="PopupMenuVoid" type="PopupMenu" parent="Visual/EditCamera"]
-margin_left = -640.0
-margin_top = -360.0
-margin_right = -384.0
-margin_bottom = -310.0
+[node name="PopupMenuVoid" type="PopupMenu" parent="Visual/Popups"]
+margin_left = 320.0
+margin_top = 180.0
+margin_right = 576.0
+margin_bottom = 230.0
 custom_fonts/font = ExtResource( 5 )
 custom_constants/vseparation = 20
 custom_constants/hseparation = 20
-items = [ "Nouveau état", ExtResource( 7 ), 0, false, false, 0, 0, null, "", false ]
+items = [ "Nouveau état", ExtResource( 7 ), 0, false, false, 0, 0, null, "", false, "Nouvelle instruction", ExtResource( 9 ), 0, false, false, 1, 0, null, "", false ]
 
-[node name="NewEtatDialog" type="ConfirmationDialog" parent="Visual/EditCamera"]
-margin_right = 200.0
-margin_bottom = 96.0
+[node name="NewEtatDialog" type="ConfirmationDialog" parent="Visual/Popups"]
+margin_left = 960.0
+margin_top = 540.0
+margin_right = 1274.0
+margin_bottom = 666.0
 window_title = "Nouveau Etat"
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="VBoxContainer" type="VBoxContainer" parent="Visual/EditCamera/NewEtatDialog"]
+[node name="VBoxContainer" type="VBoxContainer" parent="Visual/Popups/NewEtatDialog"]
 margin_left = 8.0
 margin_top = 8.0
 margin_right = 306.0
@@ -80,20 +88,20 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="HBoxContainer" type="HBoxContainer" parent="Visual/EditCamera/NewEtatDialog/VBoxContainer"]
+[node name="HBoxContainer" type="HBoxContainer" parent="Visual/Popups/NewEtatDialog/VBoxContainer"]
 margin_right = 298.0
 margin_bottom = 40.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
-[node name="Label" type="Label" parent="Visual/EditCamera/NewEtatDialog/VBoxContainer/HBoxContainer"]
+[node name="Label" type="Label" parent="Visual/Popups/NewEtatDialog/VBoxContainer/HBoxContainer"]
 margin_top = 5.0
 margin_right = 188.0
 margin_bottom = 35.0
 custom_fonts/font = ExtResource( 5 )
 text = "Nom de l'état "
 
-[node name="NewName" type="LineEdit" parent="Visual/EditCamera/NewEtatDialog/VBoxContainer/HBoxContainer"]
+[node name="NewName" type="LineEdit" parent="Visual/Popups/NewEtatDialog/VBoxContainer/HBoxContainer"]
 margin_left = 192.0
 margin_right = 298.0
 margin_bottom = 40.0
@@ -103,7 +111,7 @@ custom_fonts/font = ExtResource( 5 )
 max_length = 4
 caret_blink = true
 
-[node name="HBoxContainer2" type="HBoxContainer" parent="Visual/EditCamera/NewEtatDialog/VBoxContainer"]
+[node name="HBoxContainer2" type="HBoxContainer" parent="Visual/Popups/NewEtatDialog/VBoxContainer"]
 margin_top = 44.0
 margin_right = 298.0
 margin_bottom = 82.0
@@ -111,7 +119,7 @@ size_flags_horizontal = 3
 size_flags_vertical = 3
 alignment = 1
 
-[node name="CheckInitial" type="CheckBox" parent="Visual/EditCamera/NewEtatDialog/VBoxContainer/HBoxContainer2"]
+[node name="CheckInitial" type="CheckBox" parent="Visual/Popups/NewEtatDialog/VBoxContainer/HBoxContainer2"]
 margin_left = 46.0
 margin_right = 152.0
 margin_bottom = 38.0
@@ -119,7 +127,7 @@ size_flags_vertical = 0
 custom_fonts/font = ExtResource( 5 )
 text = "Initial"
 
-[node name="CheckFinal" type="CheckBox" parent="Visual/EditCamera/NewEtatDialog/VBoxContainer/HBoxContainer2"]
+[node name="CheckFinal" type="CheckBox" parent="Visual/Popups/NewEtatDialog/VBoxContainer/HBoxContainer2"]
 margin_left = 156.0
 margin_right = 252.0
 margin_bottom = 38.0
@@ -127,10 +135,102 @@ size_flags_vertical = 0
 custom_fonts/font = ExtResource( 5 )
 text = "Final"
 
+[node name="NewLinkDialog" type="ConfirmationDialog" parent="Visual/Popups"]
+margin_right = 200.0
+margin_bottom = 70.0
+window_title = "Nouvelle instruction"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Visual/Popups/NewLinkDialog"]
+margin_left = 8.0
+margin_top = 8.0
+margin_right = 251.0
+margin_bottom = 160.0
+custom_constants/separation = 20
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="Visual/Popups/NewLinkDialog/VBoxContainer"]
+margin_right = 259.0
+margin_bottom = 36.0
+
+[node name="Debut" type="Label" parent="Visual/Popups/NewLinkDialog/VBoxContainer/HBoxContainer2"]
+margin_top = 3.0
+margin_right = 152.0
+margin_bottom = 33.0
+size_flags_horizontal = 3
+custom_fonts/font = ExtResource( 5 )
+text = "Etat début "
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="EtatDebut" type="OptionButton" parent="Visual/Popups/NewLinkDialog/VBoxContainer/HBoxContainer2"]
+margin_left = 156.0
+margin_right = 259.0
+margin_bottom = 36.0
+size_flags_horizontal = 3
+custom_fonts/font = ExtResource( 5 )
+text = "Etat"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="HBoxContainer4" type="HBoxContainer" parent="Visual/Popups/NewLinkDialog/VBoxContainer"]
+margin_top = 56.0
+margin_right = 259.0
+margin_bottom = 96.0
+
+[node name="MotLus" type="Label" parent="Visual/Popups/NewLinkDialog/VBoxContainer/HBoxContainer4"]
+margin_top = 5.0
+margin_right = 133.0
+margin_bottom = 35.0
+size_flags_horizontal = 3
+custom_fonts/font = ExtResource( 5 )
+text = "Mot à lire"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="EtatDebut" type="LineEdit" parent="Visual/Popups/NewLinkDialog/VBoxContainer/HBoxContainer4"]
+margin_left = 137.0
+margin_right = 259.0
+margin_bottom = 40.0
+size_flags_horizontal = 3
+custom_fonts/font = ExtResource( 5 )
+
+[node name="HBoxContainer3" type="HBoxContainer" parent="Visual/Popups/NewLinkDialog/VBoxContainer"]
+margin_top = 116.0
+margin_right = 259.0
+margin_bottom = 152.0
+
+[node name="Fin" type="Label" parent="Visual/Popups/NewLinkDialog/VBoxContainer/HBoxContainer3"]
+margin_top = 3.0
+margin_right = 127.0
+margin_bottom = 33.0
+size_flags_horizontal = 3
+custom_fonts/font = ExtResource( 5 )
+text = "Etat fin"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="EtatFin" type="OptionButton" parent="Visual/Popups/NewLinkDialog/VBoxContainer/HBoxContainer3"]
+margin_left = 131.0
+margin_right = 259.0
+margin_bottom = 36.0
+size_flags_horizontal = 3
+custom_fonts/font = ExtResource( 5 )
+text = "Etat"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
 [node name="GUI" type="Control" parent="."]
 anchor_right = 1.0
 script = ExtResource( 10 )
 __meta__ = {
+"_edit_lock_": true,
 "_edit_use_anchors_": false
 }
 
@@ -213,9 +313,12 @@ __meta__ = {
 }
 [connection signal="right_click_etat" from="Visual/Etats/Etat" to="Visual" method="_on_Etat_right_click_etat"]
 [connection signal="right_click_etat" from="Visual/Etats/Etat2" to="Visual" method="_on_Etat_right_click_etat"]
-[connection signal="popup_hide" from="Visual/EditCamera/PopupMenuEtat" to="Visual" method="_on_PopupMenuEtat_popup_hide"]
-[connection signal="id_pressed" from="Visual/EditCamera/PopupMenuVoid" to="Visual" method="_on_PopupMenuVoid_id_pressed"]
-[connection signal="confirmed" from="Visual/EditCamera/NewEtatDialog" to="Visual" method="_on_NewEtatDialog_confirmed"]
+[connection signal="right_click_etat" from="Visual/Etats/Etat3" to="Visual" method="_on_Etat_right_click_etat"]
+[connection signal="id_pressed" from="Visual/Popups/PopupMenuEtat" to="Visual" method="_on_PopupMenuEtat_id_pressed"]
+[connection signal="popup_hide" from="Visual/Popups/PopupMenuEtat" to="Visual" method="_on_PopupMenuEtat_popup_hide"]
+[connection signal="id_pressed" from="Visual/Popups/PopupMenuVoid" to="Visual" method="_on_PopupMenuVoid_id_pressed"]
+[connection signal="confirmed" from="Visual/Popups/NewEtatDialog" to="Visual" method="_on_NewEtatDialog_confirmed"]
+[connection signal="confirmed" from="Visual/Popups/NewLinkDialog" to="Visual" method="_on_NewLinkDialog_confirmed"]
 [connection signal="pressed" from="GUI/MarginContainer/HBoxContainer/Automate" to="GUI" method="_on_Automate_pressed"]
 [connection signal="pressed" from="GUI/MarginContainer/HBoxContainer/Operations" to="GUI" method="_on_Operations_pressed"]
 [connection signal="pressed" from="GUI/MarginContainer/HBoxContainer/Aide" to="GUI" method="_on_Aide_pressed"]

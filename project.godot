@@ -22,6 +22,7 @@ config/icon="res://icon.png"
 [autoload]
 
 App="*res://src/activities/App.tscn"
+EditVars="*res://src/activities/EditVars.gd"
 
 [display]
 
