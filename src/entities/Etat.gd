@@ -8,6 +8,9 @@ export var initial : bool
 signal right_click_etat(etat)
 signal etat_linked(etat_fin)
 
+const white = Color(1, 1, 1, 1)
+const blue = Color(0, 0, 1, 1)
+
 var drag = false
 var drag_start_position
 

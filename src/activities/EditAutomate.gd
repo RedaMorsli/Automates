@@ -65,9 +65,23 @@ func _on_PopupMenuEtat_id_pressed(id):
 
 
 func _on_NewLinkDialog_confirmed():
-	var new_instruction = Instruction.instance()
 	var debut = $Popups/NewLinkDialog/VBoxContainer/HBoxContainer2/EtatDebut.selected
 	var fin = $Popups/NewLinkDialog/VBoxContainer/HBoxContainer3/EtatFin.selected
-	new_instruction.etat_debut = $Etats.get_child(debut)
-	new_instruction.etat_fin = $Etats.get_child(fin)
-	$Instructions.add_child(new_instruction)
+	var mot = $Popups/NewLinkDialog/VBoxContainer/HBoxContainer4/Mot.text
+	var etat_debut =  $Etats.get_child(debut)
+	var etat_fin = $Etats.get_child(fin)
+	
+	var new_instruction = _ins_exists(etat_debut, etat_fin)
+	if  new_instruction == null:
+		new_instruction = Instruction.instance()
+		new_instruction.etat_debut = etat_debut
+		new_instruction.etat_fin = etat_fin
+		$Instructions.add_child(new_instruction)
+	
+	new_instruction.mot_lu.append(mot)
+
+func _ins_exists(debut, fin):
+	for	child in $Instructions.get_children():
+		if (child.etat_debut == debut) and (child.etat_fin == fin):
+			return child
+	return null

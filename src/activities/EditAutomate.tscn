@@ -27,7 +27,7 @@ nom = "S0"
 initial = true
 
 [node name="Etat2" parent="Visual/Etats" instance=ExtResource( 1 )]
-position = Vector2( 986.996, 363.218 )
+position = Vector2( 1157.52, 509.994 )
 nom = "S1"
 
 [node name="Etat3" parent="Visual/Etats" instance=ExtResource( 1 )]
@@ -192,7 +192,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="EtatDebut" type="LineEdit" parent="Visual/Popups/NewLinkDialog/VBoxContainer/HBoxContainer4"]
+[node name="Mot" type="LineEdit" parent="Visual/Popups/NewLinkDialog/VBoxContainer/HBoxContainer4"]
 margin_left = 137.0
 margin_right = 259.0
 margin_bottom = 40.0
