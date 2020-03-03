@@ -36,6 +36,7 @@ nom = "S2"
 final = true
 
 [node name="EditCamera" type="Camera2D" parent="Visual"]
+visible = false
 position = Vector2( 960, 540 )
 limit_left = -1280
 limit_top = -720

@@ -22,11 +22,8 @@ func _ready():
 		$SpriteInitial.hide()
 
 func _process(delta):
-	if (drag) and (Input.is_action_pressed("click")) and (not EditVars.linking):
+	if (drag) and (Input.is_action_pressed("click")):
 		move_and_slide((get_global_mouse_position() - position) * 50)
-	if Input.is_action_just_pressed("click") and EditVars.linking:
-		EditVars.link_with(self)
-		drag = false
 
 func _on_Etat_input_event(viewport, event, shape_idx):
 	if event is InputEventMouseButton:
