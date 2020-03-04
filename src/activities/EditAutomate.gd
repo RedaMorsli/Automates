@@ -72,13 +72,27 @@ func _on_NewLinkDialog_confirmed():
 	var etat_fin = $Etats.get_child(fin)
 	
 	var new_instruction = _ins_exists(etat_debut, etat_fin)
-	if  new_instruction == null:
-		new_instruction = Instruction.instance()
-		new_instruction.etat_debut = etat_debut
-		new_instruction.etat_fin = etat_fin
-		$Instructions.add_child(new_instruction)
+	if etat_debut == etat_fin:
+		if new_instruction == null:
+			new_instruction = Instruction.instance()
+			new_instruction.mot_lu.append(mot)
+			new_instruction.etat_debut = etat_debut
+			new_instruction.etat_fin = etat_fin
+			new_instruction.boucle = true
+			etat_debut.show_boucle(new_instruction.mot_lu)
+			$Instructions.add_child(new_instruction)
+		else:
+			new_instruction.mot_lu.append(mot)
+			etat_debut.show_boucle(new_instruction.mot_lu)
+			print(new_instruction.mot_lu)
+	else:
+		if  new_instruction == null:
+			new_instruction = Instruction.instance()
+			new_instruction.etat_debut = etat_debut
+			new_instruction.etat_fin = etat_fin
+			$Instructions.add_child(new_instruction)
 	
-	new_instruction.mot_lu.append(mot)
+		new_instruction.mot_lu.append(mot)
 
 func _ins_exists(debut, fin):
 	for	child in $Instructions.get_children():

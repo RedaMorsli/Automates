@@ -6,6 +6,7 @@ export var final : bool
 export var initial : bool
 
 signal right_click_etat(etat)
+signal right_click_boucle(etat)
 signal etat_linked(etat_fin)
 
 const white = Color(1, 1, 1, 1)
@@ -33,3 +34,17 @@ func _on_Etat_input_event(viewport, event, shape_idx):
 			drag = false 
 	if event.is_action_pressed("ui_right_mouse"):
 		emit_signal("right_click_etat", self)
+
+func show_boucle(word):
+	var text = String(word)
+	$Boucle/BoucleLabel.text = text
+	$Boucle.show()
+
+func hide_boucle():
+	$Boucle.hide()
+
+
+func _on_Boucle_input_event(viewport, event, shape_idx):
+	if event.is_action_pressed("ui_right_mouse"):
+		emit_signal("right_click_boucle", self)
+		print(nom)

@@ -1,10 +1,15 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=11 format=2]
 
 [ext_resource path="res://src/entities/Etat.gd" type="Script" id=1]
 [ext_resource path="res://assets/icones/flèches_initial.png" type="Texture" id=2]
 [ext_resource path="res://assets/icones/etat_normal_1.png" type="Texture" id=3]
 [ext_resource path="res://assets/icones/cercle_final.png" type="Texture" id=4]
 [ext_resource path="res://assets/fonts/Comfortaa-Bold.ttf" type="DynamicFontData" id=5]
+[ext_resource path="res://assets/fonts/font_button.tres" type="DynamicFont" id=6]
+[ext_resource path="res://assets/icones/boucle.png" type="Texture" id=7]
+
+[sub_resource type="CircleShape2D" id=3]
+radius = 48.8956
 
 [sub_resource type="CircleShape2D" id=1]
 radius = 50.7248
@@ -16,6 +21,28 @@ font_data = ExtResource( 5 )
 [node name="Etat" type="KinematicBody2D"]
 input_pickable = true
 script = ExtResource( 1 )
+
+[node name="Boucle" type="Area2D" parent="."]
+visible = false
+position = Vector2( 24, -70 )
+
+[node name="Sprite" type="Sprite" parent="Boucle"]
+texture = ExtResource( 7 )
+
+[node name="BoucleLabel" type="Label" parent="Boucle"]
+margin_left = -42.2477
+margin_top = -78.5161
+margin_right = 25.7523
+margin_bottom = -48.5161
+custom_fonts/font = ExtResource( 6 )
+text = "word"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Boucle"]
+position = Vector2( -6.68994, -42.2302 )
+shape = SubResource( 3 )
 
 [node name="SpriteEtat" type="Sprite" parent="."]
 texture = ExtResource( 3 )
@@ -42,3 +69,4 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 [connection signal="input_event" from="." to="." method="_on_Etat_input_event"]
+[connection signal="input_event" from="Boucle" to="." method="_on_Boucle_input_event"]

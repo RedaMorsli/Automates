@@ -10,10 +10,15 @@ var etat_debut : KinematicBody2D
 var mot_lu = []
 var etat_fin : KinematicBody2D
 
+var boucle = false
 var inverse : bool = true
 var drag : bool
 
 func _draw():
+	if boucle:
+		$Arrow.hide()
+		return
+		
 	var center = (etat_debut.position + etat_fin.position) / 2
 	var start = etat_debut.position
 	var end = etat_fin.position
