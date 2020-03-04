@@ -7,6 +7,7 @@ var etat_popup_opened = false
 var last_right_click_position
 
 var last_etat_right_clicked
+var last_instruction_clicked : Node2D
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -55,13 +56,14 @@ func _on_NewEtatDialog_confirmed():
 
 func _on_PopupMenuEtat_id_pressed(id):
 	match id:
-		0:#ajouter instruction
-			#var new_instruciton = Instruction.instance()
-			#EditVars.editing_link = new_instruciton
-			#new_instruciton.etat_debut = last_etat_right_clicked
-			#$Instructions.add_child(new_instruciton)
-			#EditVars.linking = true
+		0:#edit etat
 			pass
+		1:#delete etat
+			var etat = last_etat_right_clicked
+			for child in $Instructions.get_children():
+				if (child.etat_debut == etat) or (child.etat_fin == etat):
+					child.queue_free()
+			last_etat_right_clicked.queue_free()
 
 
 func _on_NewLinkDialog_confirmed():
@@ -80,6 +82,7 @@ func _on_NewLinkDialog_confirmed():
 			new_instruction.etat_fin = etat_fin
 			new_instruction.boucle = true
 			etat_debut.show_boucle(new_instruction.mot_lu)
+			new_instruction.connect("right_click_instruction", self, "_on_right_click_instruction")
 			$Instructions.add_child(new_instruction)
 		else:
 			new_instruction.mot_lu.append(mot)
@@ -90,6 +93,7 @@ func _on_NewLinkDialog_confirmed():
 			new_instruction = Instruction.instance()
 			new_instruction.etat_debut = etat_debut
 			new_instruction.etat_fin = etat_fin
+			new_instruction.connect("right_click_instruction", self, "_on_right_click_instruction")
 			$Instructions.add_child(new_instruction)
 	
 		new_instruction.mot_lu.append(mot)
@@ -99,3 +103,29 @@ func _ins_exists(debut, fin):
 		if (child.etat_debut == debut) and (child.etat_fin == fin):
 			return child
 	return null
+
+func _on_right_click_instruction(instruction):
+	etat_popup_opened = true
+	last_instruction_clicked = instruction
+	print(last_instruction_clicked.etat_debut.nom, last_instruction_clicked.etat_fin.nom)
+	$Popups/PopupMenuInstruction.rect_position = get_global_mouse_position()
+	$Popups/PopupMenuInstruction.popup()
+
+func _on_right_click_boucle(etat):
+	etat_popup_opened = true
+	for child in $Instructions.get_children():
+		if (child.etat_debut == etat) and (child.etat_fin == etat):
+			last_instruction_clicked = child
+	print(last_instruction_clicked.etat_debut.nom, last_instruction_clicked.etat_fin.nom)
+	$Popups/PopupMenuInstruction.rect_position = get_global_mouse_position()
+	$Popups/PopupMenuInstruction.popup()
+
+
+func _on_PopupMenuInstruction_id_pressed(id):
+	match id:
+		0:#edit
+			pass
+		1:#delete
+			if last_instruction_clicked.etat_debut == last_instruction_clicked.etat_fin:
+				last_instruction_clicked.etat_debut.hide_boucle()
+			last_instruction_clicked.queue_free()

@@ -55,7 +55,20 @@ margin_bottom = 280.0
 custom_fonts/font = ExtResource( 5 )
 custom_constants/vseparation = 20
 custom_constants/hseparation = 20
-items = [ "Editer", ExtResource( 8 ), 0, false, false, 0, 0, null, "", false, "Supprimer", ExtResource( 2 ), 0, false, false, 1, 0, null, "", false ]
+items = [ "Editer état", ExtResource( 8 ), 0, false, false, 0, 0, null, "", false, "Supprimer état", ExtResource( 2 ), 0, false, false, 1, 0, null, "", false ]
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="PopupMenuInstruction" type="PopupMenu" parent="Automate/Popups"]
+margin_left = 320.0
+margin_top = 180.0
+margin_right = 670.0
+margin_bottom = 280.0
+custom_fonts/font = ExtResource( 5 )
+custom_constants/vseparation = 20
+custom_constants/hseparation = 20
+items = [ "Editer instruction", ExtResource( 8 ), 0, false, false, 0, 0, null, "", false, "Supprimer instruction", ExtResource( 2 ), 0, false, false, 1, 0, null, "", false ]
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -312,11 +325,14 @@ items = [ "Controls", null, 0, false, false, 0, 0, null, "", false ]
 __meta__ = {
 "_edit_use_anchors_": false
 }
+[connection signal="right_click_boucle" from="Automate/Etats/Etat" to="Automate" method="_on_right_click_boucle"]
 [connection signal="right_click_etat" from="Automate/Etats/Etat" to="Automate" method="_on_Etat_right_click_etat"]
 [connection signal="right_click_etat" from="Automate/Etats/Etat2" to="Automate" method="_on_Etat_right_click_etat"]
 [connection signal="right_click_etat" from="Automate/Etats/Etat3" to="Automate" method="_on_Etat_right_click_etat"]
 [connection signal="id_pressed" from="Automate/Popups/PopupMenuEtat" to="Automate" method="_on_PopupMenuEtat_id_pressed"]
 [connection signal="popup_hide" from="Automate/Popups/PopupMenuEtat" to="Automate" method="_on_PopupMenuEtat_popup_hide"]
+[connection signal="id_pressed" from="Automate/Popups/PopupMenuInstruction" to="Automate" method="_on_PopupMenuInstruction_id_pressed"]
+[connection signal="popup_hide" from="Automate/Popups/PopupMenuInstruction" to="Automate" method="_on_PopupMenuEtat_popup_hide"]
 [connection signal="id_pressed" from="Automate/Popups/PopupMenuVoid" to="Automate" method="_on_PopupMenuVoid_id_pressed"]
 [connection signal="confirmed" from="Automate/Popups/NewEtatDialog" to="Automate" method="_on_NewEtatDialog_confirmed"]
 [connection signal="confirmed" from="Automate/Popups/NewLinkDialog" to="Automate" method="_on_NewLinkDialog_confirmed"]

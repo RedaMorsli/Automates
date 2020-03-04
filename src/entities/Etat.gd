@@ -47,4 +47,3 @@ func hide_boucle():
 func _on_Boucle_input_event(viewport, event, shape_idx):
 	if event.is_action_pressed("ui_right_mouse"):
 		emit_signal("right_click_boucle", self)
-		print(nom)
