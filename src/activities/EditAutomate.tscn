@@ -165,7 +165,7 @@ margin_bottom = 160.0
 custom_constants/separation = 20
 
 [node name="HBoxContainer2" type="HBoxContainer" parent="Automate/Popups/NewLinkDialog/VBoxContainer"]
-margin_right = 259.0
+margin_right = 243.0
 margin_bottom = 36.0
 
 [node name="Debut" type="Label" parent="Automate/Popups/NewLinkDialog/VBoxContainer/HBoxContainer2"]
@@ -181,7 +181,7 @@ __meta__ = {
 
 [node name="EtatDebut" type="OptionButton" parent="Automate/Popups/NewLinkDialog/VBoxContainer/HBoxContainer2"]
 margin_left = 156.0
-margin_right = 259.0
+margin_right = 243.0
 margin_bottom = 36.0
 size_flags_horizontal = 3
 custom_fonts/font = ExtResource( 5 )
@@ -192,7 +192,7 @@ __meta__ = {
 
 [node name="HBoxContainer4" type="HBoxContainer" parent="Automate/Popups/NewLinkDialog/VBoxContainer"]
 margin_top = 56.0
-margin_right = 259.0
+margin_right = 243.0
 margin_bottom = 96.0
 
 [node name="MotLus" type="Label" parent="Automate/Popups/NewLinkDialog/VBoxContainer/HBoxContainer4"]
@@ -208,19 +208,19 @@ __meta__ = {
 
 [node name="Mot" type="LineEdit" parent="Automate/Popups/NewLinkDialog/VBoxContainer/HBoxContainer4"]
 margin_left = 137.0
-margin_right = 259.0
+margin_right = 243.0
 margin_bottom = 40.0
 size_flags_horizontal = 3
 custom_fonts/font = ExtResource( 5 )
 
 [node name="HBoxContainer3" type="HBoxContainer" parent="Automate/Popups/NewLinkDialog/VBoxContainer"]
 margin_top = 116.0
-margin_right = 259.0
+margin_right = 243.0
 margin_bottom = 152.0
 
 [node name="Fin" type="Label" parent="Automate/Popups/NewLinkDialog/VBoxContainer/HBoxContainer3"]
 margin_top = 3.0
-margin_right = 127.0
+margin_right = 119.0
 margin_bottom = 33.0
 size_flags_horizontal = 3
 custom_fonts/font = ExtResource( 5 )
@@ -230,8 +230,8 @@ __meta__ = {
 }
 
 [node name="EtatFin" type="OptionButton" parent="Automate/Popups/NewLinkDialog/VBoxContainer/HBoxContainer3"]
-margin_left = 131.0
-margin_right = 259.0
+margin_left = 123.0
+margin_right = 243.0
 margin_bottom = 36.0
 size_flags_horizontal = 3
 custom_fonts/font = ExtResource( 5 )
@@ -325,6 +325,40 @@ items = [ "Controls", null, 0, false, false, 0, 0, null, "", false ]
 __meta__ = {
 "_edit_use_anchors_": false
 }
+
+[node name="ReductionDialog" type="ConfirmationDialog" parent="GUI"]
+margin_right = 200.0
+margin_bottom = 70.0
+dialog_text = "Voulez vous réduire l'automate? (Supprimer les états non-accessibles et les états non-co-accessibles)"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="MarginContainer" type="MarginContainer" parent="GUI/ReductionDialog"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 8.0
+margin_top = 22.0
+margin_right = -8.0
+margin_bottom = -22.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+custom_constants/margin_right = 20
+custom_constants/margin_top = 20
+custom_constants/margin_left = 20
+custom_constants/margin_bottom = 20
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Tree" type="Tree" parent="GUI/ReductionDialog/MarginContainer"]
+margin_left = 20.0
+margin_top = 20.0
+margin_right = 632.0
+margin_bottom = 21.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+columns = 3
 [connection signal="right_click_boucle" from="Automate/Etats/Etat" to="Automate" method="_on_right_click_boucle"]
 [connection signal="right_click_etat" from="Automate/Etats/Etat" to="Automate" method="_on_Etat_right_click_etat"]
 [connection signal="right_click_etat" from="Automate/Etats/Etat2" to="Automate" method="_on_Etat_right_click_etat"]
@@ -339,3 +373,5 @@ __meta__ = {
 [connection signal="pressed" from="GUI/MarginContainer/HBoxContainer/Automate" to="GUI" method="_on_Automate_pressed"]
 [connection signal="pressed" from="GUI/MarginContainer/HBoxContainer/Operations" to="GUI" method="_on_Operations_pressed"]
 [connection signal="pressed" from="GUI/MarginContainer/HBoxContainer/Aide" to="GUI" method="_on_Aide_pressed"]
+[connection signal="id_pressed" from="GUI/PopupOperations" to="." method="_on_PopupOperations_id_pressed"]
+[connection signal="confirmed" from="GUI/ReductionDialog" to="." method="_on_ReductionDialog_confirmed"]
