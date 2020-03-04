@@ -58,10 +58,10 @@ texture = ExtResource( 4 )
 shape = SubResource( 1 )
 
 [node name="Nom" type="Label" parent="."]
-margin_left = -20.3771
-margin_top = -15.8488
-margin_right = 19.6229
-margin_bottom = 20.1512
+margin_left = -40.0
+margin_top = -16.0
+margin_right = 35.0
+margin_bottom = 20.0
 custom_fonts/font = SubResource( 2 )
 text = "S0"
 align = 1
