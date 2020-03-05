@@ -20,12 +20,15 @@ func smiplifier():
 	var instructions = $Automate/Instructions.get_children()
 	for ins in instructions:
 		if decomposer(ins):
-			ins.queue_free()
+			delete_instruction(ins)
 
 func decomposer(instrcution):
 	var delete_ins = true
+	var index_deleted = []
+	var index = 0
 	for word in instrcution.mot_lu:
 		if word.length() > 1:
+			index_deleted.append(index)
 			var new_etats = []
 			var new_ins = []
 			for i in range(word.length()):
@@ -56,7 +59,13 @@ func decomposer(instrcution):
 				print(ins.etat_debut, ins.mot_lu, ins.etat_fin)
 		else:
 			delete_ins = false
-	pass
+		index += 1
+	if not delete_ins:
+		for id in index_deleted:
+			instrcution.mot_lu.remove(id)
+		if instrcution.etat_debut == instrcution.etat_fin:
+			instrcution.etat_debut.show_boucle(instrcution.mot_lu)
+	return delete_ins
 
 func _is_etat_accessible(etat_initial, etat):
 	if etat.initial:
@@ -119,6 +128,12 @@ func delete(etat):
 		if (child.etat_debut == etat) or (child.etat_fin == etat):
 			child.queue_free()
 		etat.queue_free()
+
+func delete_instruction(instruction):
+	if instruction.etat_debut == instruction.etat_fin:
+		instruction.etat_debut.hide_boucle()
+	instruction.queue_free()
+
 
 func _on_ReductionDialog_confirmed():
 	for etat in $Automate/Etats.get_children():
