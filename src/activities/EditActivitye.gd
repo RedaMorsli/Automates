@@ -8,6 +8,7 @@ func _ready():
 	pass
 
 func _process(delta):
+	#print(_get_etats_epsilon())
 	pass
 
 func is_accessible(etat):
@@ -31,9 +32,11 @@ func decomposer(instrcution):
 			index_deleted.append(index)
 			var new_etats = []
 			var new_ins = []
+			#create
 			for i in range(word.length()):
 				var c = word[i]
 				var inc = Instruction.instance()
+				inc.connect("right_click_instruction", $Automate, "_on_right_click_instruction")
 				inc.mot_lu = c
 				if i == 0:
 					inc.etat_debut = instrcution.etat_debut
@@ -42,21 +45,38 @@ func decomposer(instrcution):
 				new_ins.append(inc)
 			for i in range(word.length() - 1):
 				var etat = Etat.instance()
+				etat.connect("right_click_etat", $Automate, "_on_Etat_right_click_etat")
 				etat.nom = word[i] + word[i+1]
 				new_etats.append(etat)
 			var i = 0
-			for ins in new_ins:
-				if ins.etat_debut == null:
-					ins.etat_debut = new_etats[i]
-					if ins.etat_fin == null:
-						ins.etat_fin = new_etats[i+1]
+			#link
+			for etat in new_etats:
+				if i == 0:
+					new_ins[i].etat_debut = instrcution.etat_debut
+					new_ins[i].etat_fin = etat
+					if new_etats.size() == 1:
+						new_ins[i+1].etat_debut = etat
+						new_ins[i+1].etat_fin = instrcution.etat_fin
+				elif i == new_etats.size() - 1:
+					new_ins[i].etat_debut = new_etats[i-1]
+					new_ins[i].etat_fin = etat
+					new_ins[i+1].etat_debut = etat
+					new_ins[i+1].etat_fin = instrcution.etat_fin
 				else:
-					ins.etat_fin = new_etats[i]
-			#debug
+					new_ins[i].etat_debut = new_etats[i-1]
+					new_ins[i].etat_fin = etat
+				i += 1
+			#display
+			for etat in new_etats:
+				etat.position = _get_nearest_position(instrcution.etat_debut.position)
+				$Automate/Etats.add_child(etat)
+			for ins in new_ins:
+				$Automate/Instructions.add_child(ins)
+			#for debug
 			for etat in new_etats:
 				print(etat.nom)
 			for ins in new_ins:
-				print(ins.etat_debut, ins.mot_lu, ins.etat_fin)
+				print(ins.etat_debut.nom, ins.mot_lu, ins.etat_fin.nom)
 		else:
 			delete_ins = false
 		index += 1
@@ -66,6 +86,47 @@ func decomposer(instrcution):
 		if instrcution.etat_debut == instrcution.etat_fin:
 			instrcution.etat_debut.show_boucle(instrcution.mot_lu)
 	return delete_ins
+
+func delete_epsilons():
+	pass
+
+func _get_etats_epsilon():
+	var etats = []
+	for ins in $Automate/Instructions.get_children():
+		if "" in ins.mot_lu:
+			etats.append(ins.etat_debut)
+	return etats
+
+func _get_epsilon_clos(etat_epsilon):
+	pass
+
+func _get_transitions(epsilon_clos):
+	pass
+
+func _get_epsilon_clos_trans(transitions):
+	pass
+
+func _get_trans_added(etats, transitions):
+	pass
+
+func _get_nearest_position(from_pos : Vector2):
+	var position = from_pos
+	var etats = $Automate/Etats.get_children()
+	var instrcutions = $Automate/Instructions.get_children()
+	var taken = []
+	for etat in etats:
+		taken.append(etat.position)
+	for ins in instrcutions:
+		taken.append(ins.get_position())
+	while(_is_colliding(position, taken)):
+		position += Vector2(40, 40)
+	return position
+
+func _is_colliding(point : Vector2, points):
+	for p in points:
+		if not (point.distance_to(p) >= 120):
+			return true
+	return false
 
 func _is_etat_accessible(etat_initial, etat):
 	if etat.initial:

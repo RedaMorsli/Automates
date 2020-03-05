@@ -91,6 +91,8 @@ func _on_NewLinkDialog_confirmed():
 	var debut = $Popups/NewLinkDialog/VBoxContainer/HBoxContainer2/EtatDebut.selected
 	var fin = $Popups/NewLinkDialog/VBoxContainer/HBoxContainer3/EtatFin.selected
 	var mot = $Popups/NewLinkDialog/VBoxContainer/HBoxContainer4/Mot.text
+	if mot.length() == 0:
+		mot = "€"
 	var etat_debut =  $Etats.get_child(debut)
 	var etat_fin = $Etats.get_child(fin)
 	
