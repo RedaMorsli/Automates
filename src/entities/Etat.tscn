@@ -8,13 +8,13 @@
 [ext_resource path="res://assets/fonts/font_button.tres" type="DynamicFont" id=6]
 [ext_resource path="res://assets/icones/boucle.png" type="Texture" id=7]
 
-[sub_resource type="CircleShape2D" id=3]
+[sub_resource type="CircleShape2D" id=1]
 radius = 48.8956
 
-[sub_resource type="CircleShape2D" id=1]
+[sub_resource type="CircleShape2D" id=2]
 radius = 50.7248
 
-[sub_resource type="DynamicFont" id=2]
+[sub_resource type="DynamicFont" id=3]
 size = 31
 font_data = ExtResource( 5 )
 
@@ -42,7 +42,7 @@ __meta__ = {
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Boucle"]
 position = Vector2( -6.68994, -42.2302 )
-shape = SubResource( 3 )
+shape = SubResource( 1 )
 
 [node name="SpriteEtat" type="Sprite" parent="."]
 texture = ExtResource( 3 )
@@ -55,14 +55,14 @@ texture = ExtResource( 2 )
 texture = ExtResource( 4 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-shape = SubResource( 1 )
+shape = SubResource( 2 )
 
 [node name="Nom" type="Label" parent="."]
 margin_left = -40.0
 margin_top = -16.0
 margin_right = 35.0
 margin_bottom = 20.0
-custom_fonts/font = SubResource( 2 )
+custom_fonts/font = SubResource( 3 )
 text = "S0"
 align = 1
 __meta__ = {

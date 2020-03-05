@@ -16,6 +16,7 @@ script = ExtResource( 6 )
 
 [node name="Automate" type="Node2D" parent="."]
 script = ExtResource( 4 )
+is_camera_control_enabeled = true
 
 [node name="Instructions" type="Node2D" parent="Automate"]
 
@@ -27,7 +28,7 @@ nom = "S0"
 initial = true
 
 [node name="Etat2" parent="Automate/Etats" instance=ExtResource( 1 )]
-position = Vector2( 1157.52, 509.994 )
+position = Vector2( 939.879, 696.543 )
 nom = "S1"
 
 [node name="Etat3" parent="Automate/Etats" instance=ExtResource( 1 )]
@@ -308,7 +309,7 @@ margin_bottom = 307.0
 custom_fonts/font = ExtResource( 5 )
 custom_constants/vseparation = 20
 custom_constants/hseparation = 20
-items = [ "Lire un mot", null, 0, false, false, 0, 0, null, "", false, "Réduction de l'automate", null, 0, false, false, 1, 0, null, "", false, "Déterminiser l'automate", null, 0, false, false, 2, 0, null, "", false, "Automate complément", null, 0, false, false, 3, 0, null, "", false, "Automate miroir", null, 0, false, false, 4, 0, null, "", false ]
+items = [ "Lire un mot", null, 0, false, false, 0, 0, null, "", false, "Réduction de l'automate", null, 0, false, false, 1, 0, null, "", false, "Simplifier l'automate", null, 0, false, false, 2, 0, null, "", false, "Déterminiser l'automate", null, 0, false, false, 3, 0, null, "", false, "Automate complément", null, 0, false, false, 4, 0, null, "", false, "Automate miroir", null, 0, false, false, 5, 0, null, "", false ]
 __meta__ = {
 "_edit_use_anchors_": false
 }

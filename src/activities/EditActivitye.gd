@@ -1,5 +1,7 @@
 extends Node
 
+var Etat = preload("res://src/entities/Etat.tscn")
+var Instruction = preload("res://src/entities/Instruction.tscn")
 var rejected = []
 
 func _ready():
@@ -13,6 +15,48 @@ func is_accessible(etat):
 
 func is_coaccessible(etat):
 	return _is_etat_coaccessible(etat, etat)
+
+func smiplifier():
+	var instructions = $Automate/Instructions.get_children()
+	for ins in instructions:
+		if decomposer(ins):
+			ins.queue_free()
+
+func decomposer(instrcution):
+	var delete_ins = true
+	for word in instrcution.mot_lu:
+		if word.length() > 1:
+			var new_etats = []
+			var new_ins = []
+			for i in range(word.length()):
+				var c = word[i]
+				var inc = Instruction.instance()
+				inc.mot_lu = c
+				if i == 0:
+					inc.etat_debut = instrcution.etat_debut
+				if i == (word.length() - 1):
+					inc.etat_fin = instrcution.etat_fin
+				new_ins.append(inc)
+			for i in range(word.length() - 1):
+				var etat = Etat.instance()
+				etat.nom = word[i] + word[i+1]
+				new_etats.append(etat)
+			var i = 0
+			for ins in new_ins:
+				if ins.etat_debut == null:
+					ins.etat_debut = new_etats[i]
+					if ins.etat_fin == null:
+						ins.etat_fin = new_etats[i+1]
+				else:
+					ins.etat_fin = new_etats[i]
+			#debug
+			for etat in new_etats:
+				print(etat.nom)
+			for ins in new_ins:
+				print(ins.etat_debut, ins.mot_lu, ins.etat_fin)
+		else:
+			delete_ins = false
+	pass
 
 func _is_etat_accessible(etat_initial, etat):
 	if etat.initial:
@@ -107,3 +151,5 @@ func _on_PopupOperations_id_pressed(id):
 					var child = $GUI/ReductionDialog/MarginContainer/Tree.create_item(etats_non_coacc)
 					child.set_text(0, etat.nom)
 			$GUI/ReductionDialog.popup_centered_ratio(0.4)
+		2:#simplifier
+			smiplifier()

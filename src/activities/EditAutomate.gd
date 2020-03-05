@@ -1,5 +1,8 @@
 extends Node2D
 
+export var is_camera_control_enabeled : bool
+var start_drag_position
+
 var Etat = preload("res://src/entities/Etat.tscn")
 var Instruction = preload("res://src/entities/Instruction.tscn")
 
@@ -18,7 +21,25 @@ func _process(delta):
 		last_right_click_position = get_global_mouse_position()
 		$Popups/PopupMenuVoid.rect_position = get_global_mouse_position()
 		$Popups/PopupMenuVoid.popup()
+	#if Input.is_action_just_pressed("ui_middle_mouse"):
+		#start_drag_position = get_global_mouse_position()
+	#if Input.is_action_pressed("ui_middle_mouse"):
+		#$Etats.position -= (start_drag_position - get_global_mouse_position())
+		#$Instructions.position -= start_drag_position - get_global_mouse_position()
 
+func _inputt(event):
+	if event is InputEventMouseButton:
+		if event.is_pressed():
+			# zoom in
+			if event.button_index == BUTTON_WHEEL_UP:
+				if ($Etats.scale.x <= 3) and is_camera_control_enabeled:
+					$Etats.scale += Vector2(0.1, 0.1)
+					$Instructions.scale += Vector2(0.1, 0.1)
+			# zoom out
+			if event.button_index == BUTTON_WHEEL_DOWN:
+				if ($Etats.scale.x >= 0.5) and is_camera_control_enabeled:
+					$Etats.scale -= Vector2(0.1, 0.1)
+					$Instructions.scale -= Vector2(0.1, 0.1)
 
 func _on_Etat_right_click_etat(etat):
 	etat_popup_opened = true
@@ -107,7 +128,6 @@ func _ins_exists(debut, fin):
 func _on_right_click_instruction(instruction):
 	etat_popup_opened = true
 	last_instruction_clicked = instruction
-	print(last_instruction_clicked.etat_debut.nom, last_instruction_clicked.etat_fin.nom)
 	$Popups/PopupMenuInstruction.rect_position = get_global_mouse_position()
 	$Popups/PopupMenuInstruction.popup()
 

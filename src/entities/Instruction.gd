@@ -24,15 +24,15 @@ func _draw():
 	var end = etat_fin.position
 	var start_angle = atan2(start.y - center.y, start.x - center.x)
 	var end_angle = atan2(end.y - center.y, end.x - center.x)
-	var start_inverse = atan2(start.x - center.x, start.y - center.y)
-	var end_iverse = atan2(end.x - center.x, end.y - center.y)
+	var start_inverse = 45
+	var end_iverse = 135
 	var radius = etat_debut.position.distance_to(center)
 	
 	#draw link
 	draw_line(etat_debut.position, $Arrow.position, Color(1, 1, 1, 1), 10)
 	draw_line($Arrow.position, etat_fin.position, Color(1, 1, 1, 1), 10)
 	#if inverse:
-		#draw_arc(center, radius, end_angle, start_angle, 32, Color(1, 1, 1, 1), 10)
+		#draw_arc(center, radius, end_iverse, start_inverse, 32, Color(1, 1, 1, 1), 10)
 	#else:
 		#draw_arc(center, radius, start_angle, end_angle, 32, Color(1, 1, 1, 1), 10)
 	
@@ -55,6 +55,8 @@ func _process(delta):
 		if (drag) and (Input.is_action_pressed("click")):
 			$Arrow.move_and_slide((get_global_mouse_position() - $Arrow.position) * 50)
 
+func get_position():
+	return $Arrow.position
 
 func _on_Arrow_input_event(viewport, event, shape_idx):
 	if event is InputEventMouseButton:
