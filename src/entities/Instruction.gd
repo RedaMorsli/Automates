@@ -58,6 +58,9 @@ func _process(delta):
 func get_position():
 	return $Arrow.position
 
+func set_arrow_positoin(position):
+	$Arrow.position = position
+
 func _on_Arrow_input_event(viewport, event, shape_idx):
 	if event is InputEventMouseButton:
 		if event.is_pressed():
