@@ -26,6 +26,22 @@ func _process(delta):
 	if (drag) and (Input.is_action_pressed("click")):
 		move_and_slide((get_global_mouse_position() - position) * 50)
 
+func set_final(is_final):
+	if is_final:
+		final = true
+		$SpriteFinal.show()
+	else:
+		final = false
+		$SpriteFinal.hide()
+
+func set_initial(is_initial):
+	if is_initial:
+		initial = true
+		$SpriteInitial.show()
+	else:
+		initial = false
+		$SpriteInitial.hide()
+
 func _on_Etat_input_event(viewport, event, shape_idx):
 	if event is InputEventMouseButton:
 		if event.is_pressed():

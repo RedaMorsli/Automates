@@ -10,7 +10,6 @@ func _ready():
 	pass
 
 func _process(delta):
-	#print(_get_transitions($Automate/Etats/Etat))
 	pass
 
 func is_accessible(etat):
@@ -74,11 +73,6 @@ func decomposer(instrcution):
 				$Automate/Etats.add_child(etat)
 			for ins in new_ins:
 				$Automate/Instructions.add_child(ins)
-			#for debug
-			for etat in new_etats:
-				print(etat.nom)
-			for ins in new_ins:
-				print(ins.etat_debut.nom, ins.mot_lu, ins.etat_fin.nom)
 		else:
 			delete_ins = false
 		index += 1
@@ -91,28 +85,41 @@ func decomposer(instrcution):
 
 func delete_epsilons():
 	for etat_epsilon in _get_etats_epsilon():
-		for clos in _get_epsilon_clos(etat_epsilon, []):
+		print("S : ", etat_epsilon.nom)
+		rejected.clear()
+		for clos in _get_epsilon_clos(etat_epsilon):
+			print("€-clos : ", clos.nom)
+			if clos.final:
+				etat_epsilon.set_final(true)
 			for trans in _get_transitions(clos):
+				rejected.clear()
+				print("trans : ", trans.etat_debut.nom, trans.mot_lu, trans.etat_fin.nom)
 				for etat in _get_epsilon_clos_trans(trans.etat_fin):
-					add_trans(etat_epsilon, etat, trans.mot_lu)
+					print("€-clos trans : ", etat.nom)
+					for c in trans.mot_lu:
+						#if c != "€":
+						print("added : ",etat_epsilon.nom, c, etat.nom)
+						add_trans(etat_epsilon, etat, c)
 	
 	for ins in $Automate/Instructions.get_children():
 		if _delete_char(ins.mot_lu, "€"):
+			if ins.etat_debut == ins.etat_fin:
+				ins.etat_debut.hide_boucle()
 			ins.queue_free()
 
 func _get_etats_epsilon():
-	var etats = []
-	for ins in $Automate/Instructions.get_children():
-		if "€" in ins.mot_lu:
-			etats.append(ins.etat_debut)
-	return etats
+	return $Automate/Etats.get_children()
 
-func _get_epsilon_clos(etat_epsilon, etats): #(etat_epsilon, [])
-	var clos = etats
-	if not(etat_epsilon in clos):
+func _get_epsilon_clos(etat_epsilon): #rejected.clear() before call
+	var clos = []
+	if not(etat_epsilon in rejected):
 		clos.append(etat_epsilon)
+		rejected.append(etat_epsilon)
 		for suc in _get_successeur_mot(etat_epsilon, "€"):
-			clos.append(_get_epsilon_clos(suc, clos))
+			var suc_clos = _get_epsilon_clos(suc)
+			if suc_clos.size() != 0:
+				for c in suc_clos:
+					clos.append(c)
 		return clos
 	else:
 		return clos
@@ -121,39 +128,39 @@ func _get_transitions(epsilon_clos):
 	return _get_instruction_without_mot(epsilon_clos, "€")
 
 
-func _get_epsilon_clos_trans(transitions):
-	return _get_epsilon_clos(transitions, [])
+func _get_epsilon_clos_trans(transition):
+	return _get_epsilon_clos(transition)
 
 func add_trans(etat_debut, etat_fin, mot):
-	if not _trans_exist(etat_debut, etat_fin, mot):
-		var new_ins = Instruction.instance()
-		new_ins.etat_debut = etat_debut
-		new_ins.etat_fin = etat_fin
-		new_ins.mot_lu = mot
-		new_ins.connect("right_click_instruction", $Automate, "_on_right_click_instruction")
-		if new_ins.etat_debut == new_ins.etat_fin:
-			new_ins.etat_debut.show_boucle(new_ins.mot_lu)
+	var new_ins = _trans_exist(etat_debut, etat_fin, mot)
+	if new_ins != null:
+		if new_ins.etat_debut == null:
+			new_ins.etat_debut = etat_debut
+			new_ins.etat_fin = etat_fin
+			new_ins.mot_lu.append(mot)
+			new_ins.connect("right_click_instruction", $Automate, "_on_right_click_instruction")
+			if new_ins.etat_debut == new_ins.etat_fin:
+				new_ins.etat_debut.show_boucle(new_ins.mot_lu)
+			else:
+				$Automate/Instructions.add_child(new_ins)
 		else:
-			$Automate/Instructions.add_child(new_ins)
-	pass
+			new_ins.mot_lu.append(mot)
+			if new_ins.etat_debut == new_ins.etat_fin:
+				new_ins.etat_debut.show_boucle(new_ins.mot_lu)
 
 func _trans_exist(etat_debut, etat_fin, mot):
 	for ins in $Automate/Instructions.get_children():
 		if (etat_debut == ins.etat_debut) and (etat_fin == ins.etat_fin) and (mot in ins.mot_lu):
-			return true
-	return false
+			return null
+		elif (etat_debut == ins.etat_debut) and (etat_fin == ins.etat_fin):
+			return ins
+	return Instruction.instance()
 
 func _delete_char(variable, mot):
-	var delete_ins = false
-	if variable is Array:
-		variable.erase(mot)
-		if variable.size() == 0:
-			delete_ins = true
-	elif variable is String:
-		variable.erase(variable.find(mot), 1)
-		if variable.length() == 0:
-			delete_ins = true
-	return delete_ins
+	variable.erase(mot)
+	if variable.size() == 0:
+		return true
+	return false
 
 func _get_nearest_position(from_pos : Vector2):
 	var position = from_pos
@@ -231,7 +238,7 @@ func _get_successeur_mot(etat, mot):
 	var instructions = $Automate/Instructions.get_children()
 	var sucs = []
 	for ins in instructions:
-		if (ins.etat_debut in etat) and (mot in ins.mot_lu):
+		if (ins.etat_debut == etat) and (mot in ins.mot_lu):
 			sucs.append(ins.etat_fin)
 	return sucs
 
@@ -239,12 +246,12 @@ func _get_instruction_without_mot(etat_debut, mot):
 	var instructions = $Automate/Instructions.get_children()
 	var sucs = []
 	for ins in instructions:
-		if (ins.etat_debut == etat_debut) and (mot in ins.mot_lu):
-			if ins.mot_lu.size() == 1:
-				continue
-			sucs.append(ins)
-		else:
-			sucs.append(ins)
+		if (ins.etat_debut == etat_debut):
+			if (mot in ins.mot_lu):
+				if ins.mot_lu.size() >= 1:
+					sucs.append(ins)
+			else:
+				sucs.append(ins)
 	return sucs
 
 func _get_predecesseur(etat):
