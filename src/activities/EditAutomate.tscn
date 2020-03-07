@@ -23,247 +23,328 @@ is_camera_control_enabeled = true
 [node name="PosEtats" type="Node2D" parent="Automate/Positions"]
 
 [node name="0" type="Position2D" parent="Automate/Positions/PosEtats"]
-position = Vector2( 156.854, 536.401 )
+position = Vector2( 150, 450 )
 
 [node name="1" type="Position2D" parent="Automate/Positions/PosEtats"]
-position = Vector2( 1793.43, 506.409 )
+position = Vector2( 1050, 150 )
 
 [node name="2" type="Position2D" parent="Automate/Positions/PosEtats"]
-position = Vector2( 1008.88, 152.42 )
+position = Vector2( 1800, 450 )
 
 [node name="3" type="Position2D" parent="Automate/Positions/PosEtats"]
-position = Vector2( 1024.79, 999.904 )
+position = Vector2( 950, 1000 )
 
 [node name="4" type="Position2D" parent="Automate/Positions/PosEtats"]
-position = Vector2( 284.09, 193.317 )
+position = Vector2( 150, 150 )
 
 [node name="5" type="Position2D" parent="Automate/Positions/PosEtats"]
-position = Vector2( 1722.31, 168.324 )
+position = Vector2( 1500, 150 )
 
 [node name="6" type="Position2D" parent="Automate/Positions/PosEtats"]
-position = Vector2( 313.627, 974.911 )
+position = Vector2( 150, 750 )
 
 [node name="7" type="Position2D" parent="Automate/Positions/PosEtats"]
-position = Vector2( 1704.14, 931.742 )
+position = Vector2( 1400, 1000 )
 
 [node name="8" type="Position2D" parent="Automate/Positions/PosEtats"]
-position = Vector2( 747.594, 154.692 )
+position = Vector2( 900, 150 )
 
 [node name="9" type="Position2D" parent="Automate/Positions/PosEtats"]
-position = Vector2( 1251.99, 145.604 )
+position = Vector2( 1200, 150 )
 
 [node name="10" type="Position2D" parent="Automate/Positions/PosEtats"]
-position = Vector2( 1774.57, 356.907 )
+position = Vector2( 1800, 300 )
 
 [node name="11" type="Position2D" parent="Automate/Positions/PosEtats"]
-position = Vector2( 1779.68, 680.337 )
+position = Vector2( 1800, 600 )
 
 [node name="12" type="Position2D" parent="Automate/Positions/PosEtats"]
-position = Vector2( 1495.11, 977.183 )
+position = Vector2( 1250, 1000 )
 
 [node name="13" type="Position2D" parent="Automate/Positions/PosEtats"]
-position = Vector2( 565.828, 999.904 )
+position = Vector2( 150, 900 )
 
 [node name="14" type="Position2D" parent="Automate/Positions/PosEtats"]
-position = Vector2( 197.752, 768.152 )
+position = Vector2( 150, 600 )
 
 [node name="15" type="Position2D" parent="Automate/Positions/PosEtats"]
-position = Vector2( 143.222, 320.554 )
+position = Vector2( 150, 300 )
 
 [node name="16" type="Position2D" parent="Automate/Positions/PosEtats"]
-position = Vector2( 788.491, 995.36 )
+position = Vector2( 800, 1000 )
 
 [node name="17" type="Position2D" parent="Automate/Positions/PosEtats"]
-position = Vector2( 1504.19, 147.876 )
+position = Vector2( 1350, 150 )
 
 [node name="18" type="Position2D" parent="Automate/Positions/PosEtats"]
-position = Vector2( 1267.56, 993.883 )
+position = Vector2( 1100, 1000 )
 
 [node name="19" type="Position2D" parent="Automate/Positions/PosEtats"]
-position = Vector2( 493.121, 161.508 )
+position = Vector2( 750, 150 )
+
+[node name="20" type="Position2D" parent="Automate/Positions/PosEtats"]
+position = Vector2( 1650, 150 )
+
+[node name="21" type="Position2D" parent="Automate/Positions/PosEtats"]
+position = Vector2( 1800, 750 )
+
+[node name="22" type="Position2D" parent="Automate/Positions/PosEtats"]
+position = Vector2( 650, 1000 )
+
+[node name="23" type="Position2D" parent="Automate/Positions/PosEtats"]
+position = Vector2( 500, 1000 )
+
+[node name="24" type="Position2D" parent="Automate/Positions/PosEtats"]
+position = Vector2( 600, 150 )
+
+[node name="25" type="Position2D" parent="Automate/Positions/PosEtats"]
+position = Vector2( 1550, 1000 )
+
+[node name="26" type="Position2D" parent="Automate/Positions/PosEtats"]
+position = Vector2( 450, 150 )
+
+[node name="27" type="Position2D" parent="Automate/Positions/PosEtats"]
+position = Vector2( 1800, 900 )
+
+[node name="28" type="Position2D" parent="Automate/Positions/PosEtats"]
+position = Vector2( 350, 1000 )
+
+[node name="29" type="Position2D" parent="Automate/Positions/PosEtats"]
+position = Vector2( 1800, 150 )
+
+[node name="30" type="Position2D" parent="Automate/Positions/PosEtats"]
+position = Vector2( 1700, 1000 )
+
+[node name="31" type="Position2D" parent="Automate/Positions/PosEtats"]
+position = Vector2( 300, 150 )
 
 [node name="PosInstructions" type="Node2D" parent="Automate/Positions"]
 
 [node name="0" type="Position2D" parent="Automate/Positions/PosInstructions"]
-position = Vector2( 434.081, 548.126 )
+position = Vector2( 450, 450 )
 
 [node name="1" type="Position2D" parent="Automate/Positions/PosInstructions"]
-position = Vector2( 990.74, 536.766 )
+position = Vector2( 900, 250 )
 
 [node name="2" type="Position2D" parent="Automate/Positions/PosInstructions"]
-position = Vector2( 1522.4, 541.31 )
+position = Vector2( 1650, 350 )
 
 [node name="3" type="Position2D" parent="Automate/Positions/PosInstructions"]
-position = Vector2( 468.162, 318.647 )
+position = Vector2( 450, 250 )
 
 [node name="4" type="Position2D" parent="Automate/Positions/PosInstructions"]
-position = Vector2( 1417.89, 311.831 )
+position = Vector2( 1500, 250 )
 
 [node name="5" type="Position2D" parent="Automate/Positions/PosInstructions"]
-position = Vector2( 983.923, 311.831 )
+position = Vector2( 1050, 250 )
 
 [node name="6" type="Position2D" parent="Automate/Positions/PosInstructions"]
-position = Vector2( 504.515, 841.224 )
+position = Vector2( 900, 650 )
 
 [node name="7" type="Position2D" parent="Automate/Positions/PosInstructions"]
-position = Vector2( 1424.71, 823.048 )
+position = Vector2( 1650, 850 )
 
 [node name="8" type="Position2D" parent="Automate/Positions/PosInstructions"]
-position = Vector2( 993.012, 823.048 )
+position = Vector2( 1200, 750 )
 
 [node name="9" type="Position2D" parent="Automate/Positions/PosInstructions"]
-position = Vector2( 350.015, 423.162 )
+position = Vector2( 300, 350 )
 
 [node name="10" type="Position2D" parent="Automate/Positions/PosInstructions"]
-position = Vector2( 1574.66, 436.795 )
+position = Vector2( 1500, 350 )
 
 [node name="11" type="Position2D" parent="Automate/Positions/PosInstructions"]
-position = Vector2( 1074.81, 420.89 )
+position = Vector2( 1050, 350 )
 
 [node name="12" type="Position2D" parent="Automate/Positions/PosInstructions"]
-position = Vector2( 870.32, 418.618 )
+position = Vector2( 750, 350 )
 
 [node name="13" type="Position2D" parent="Automate/Positions/PosInstructions"]
-position = Vector2( 354.559, 718.532 )
+position = Vector2( 300, 550 )
 
 [node name="14" type="Position2D" parent="Automate/Positions/PosInstructions"]
-position = Vector2( 1561.03, 723.076 )
+position = Vector2( 1650, 650 )
 
 [node name="15" type="Position2D" parent="Automate/Positions/PosInstructions"]
-position = Vector2( 877.136, 702.628 )
+position = Vector2( 1050, 550 )
 
 [node name="16" type="Position2D" parent="Automate/Positions/PosInstructions"]
-position = Vector2( 1081.62, 707.172 )
+position = Vector2( 1350, 750 )
 
 [node name="17" type="Position2D" parent="Automate/Positions/PosInstructions"]
-position = Vector2( 545.413, 429.979 )
+position = Vector2( 450, 350 )
 
 [node name="18" type="Position2D" parent="Automate/Positions/PosInstructions"]
-position = Vector2( 1345.18, 436.795 )
+position = Vector2( 1200, 350 )
 
 [node name="19" type="Position2D" parent="Automate/Positions/PosInstructions"]
-position = Vector2( 565.862, 707.172 )
+position = Vector2( 450, 550 )
 
 [node name="20" type="Position2D" parent="Automate/Positions/PosInstructions"]
-position = Vector2( 1417.89, 693.539 )
+position = Vector2( 1650, 750 )
 
 [node name="21" type="Position2D" parent="Automate/Positions/PosInstructions"]
-position = Vector2( 615.847, 595.84 )
+position = Vector2( 750, 450 )
 
 [node name="22" type="Position2D" parent="Automate/Positions/PosInstructions"]
-position = Vector2( 1320.19, 591.296 )
+position = Vector2( 1500, 450 )
 
 [node name="23" type="Position2D" parent="Automate/Positions/PosInstructions"]
-position = Vector2( 663.561, 341.368 )
+position = Vector2( 600, 250 )
 
 [node name="24" type="Position2D" parent="Automate/Positions/PosInstructions"]
-position = Vector2( 1254.3, 350.456 )
+position = Vector2( 1350, 250 )
 
 [node name="25" type="Position2D" parent="Automate/Positions/PosInstructions"]
-position = Vector2( 672.649, 838.952 )
+position = Vector2( 750, 550 )
 
 [node name="26" type="Position2D" parent="Automate/Positions/PosInstructions"]
-position = Vector2( 1274.75, 838.952 )
+position = Vector2( 1500, 850 )
 
 [node name="27" type="Position2D" parent="Automate/Positions/PosInstructions"]
-position = Vector2( 724.907, 504.957 )
+position = Vector2( 1050, 450 )
 
 [node name="28" type="Position2D" parent="Automate/Positions/PosInstructions"]
-position = Vector2( 1215.67, 498.141 )
+position = Vector2( 1500, 550 )
 
 [node name="29" type="Position2D" parent="Automate/Positions/PosInstructions"]
-position = Vector2( 777.164, 609.472 )
+position = Vector2( 900, 450 )
 
 [node name="30" type="Position2D" parent="Automate/Positions/PosInstructions"]
-position = Vector2( 1206.59, 604.928 )
+position = Vector2( 1350, 450 )
 
 [node name="31" type="Position2D" parent="Automate/Positions/PosInstructions"]
-position = Vector2( 724.907, 723.076 )
+position = Vector2( 600, 550 )
 
 [node name="32" type="Position2D" parent="Automate/Positions/PosInstructions"]
-position = Vector2( 1295.2, 716.26 )
+position = Vector2( 1500, 650 )
 
 [node name="33" type="Position2D" parent="Automate/Positions/PosInstructions"]
-position = Vector2( 815.789, 316.375 )
+position = Vector2( 750, 250 )
 
 [node name="34" type="Position2D" parent="Automate/Positions/PosInstructions"]
-position = Vector2( 1149.78, 305.014 )
+position = Vector2( 1200, 250 )
 
 [node name="35" type="Position2D" parent="Automate/Positions/PosInstructions"]
-position = Vector2( 820.334, 832.136 )
+position = Vector2( 900, 550 )
 
 [node name="36" type="Position2D" parent="Automate/Positions/PosInstructions"]
-position = Vector2( 1149.78, 818.503 )
+position = Vector2( 1350, 850 )
 
 [node name="37" type="Position2D" parent="Automate/Positions/PosInstructions"]
-position = Vector2( 899.856, 911.658 )
+position = Vector2( 1050, 650 )
 
 [node name="38" type="Position2D" parent="Automate/Positions/PosInstructions"]
-position = Vector2( 1095.25, 911.658 )
+position = Vector2( 1200, 850 )
 
 [node name="39" type="Position2D" parent="Automate/Positions/PosInstructions"]
-position = Vector2( 886.224, 595.84 )
+position = Vector2( 1200, 550 )
 
 [node name="40" type="Position2D" parent="Automate/Positions/PosInstructions"]
-position = Vector2( 1092.98, 600.384 )
+position = Vector2( 1350, 650 )
 
 [node name="41" type="Position2D" parent="Automate/Positions/PosInstructions"]
-position = Vector2( 868.047, 498.141 )
+position = Vector2( 1200, 450 )
 
 [node name="42" type="Position2D" parent="Automate/Positions/PosInstructions"]
-position = Vector2( 1090.71, 504.957 )
+position = Vector2( 1350, 550 )
 
 [node name="43" type="Position2D" parent="Automate/Positions/PosInstructions"]
-position = Vector2( 983.923, 409.53 )
+position = Vector2( 900, 350 )
 
 [node name="44" type="Position2D" parent="Automate/Positions/PosInstructions"]
-position = Vector2( 981.651, 661.73 )
+position = Vector2( 1200, 650 )
 
 [node name="45" type="Position2D" parent="Automate/Positions/PosInstructions"]
-position = Vector2( 470.434, 652.642 )
+position = Vector2( 600, 450 )
 
 [node name="46" type="Position2D" parent="Automate/Positions/PosInstructions"]
-position = Vector2( 1651.91, 639.009 )
+position = Vector2( 1650, 550 )
 
 [node name="47" type="Position2D" parent="Automate/Positions/PosInstructions"]
-position = Vector2( 1622.38, 302.742 )
+position = Vector2( 1650, 250 )
 
 [node name="48" type="Position2D" parent="Automate/Positions/PosInstructions"]
-position = Vector2( 311.389, 318.647 )
+position = Vector2( 300, 250 )
 
 [node name="49" type="Position2D" parent="Automate/Positions/PosInstructions"]
-position = Vector2( 740.811, 414.074 )
+position = Vector2( 600, 350 )
 
 [node name="50" type="Position2D" parent="Automate/Positions/PosInstructions"]
-position = Vector2( 1483.78, 389.081 )
+position = Vector2( 1350, 350 )
 
 [node name="51" type="Position2D" parent="Automate/Positions/PosInstructions"]
-position = Vector2( 1415.62, 532.222 )
+position = Vector2( 1650, 450 )
 
 [node name="52" type="Position2D" parent="Automate/Positions/PosInstructions"]
-position = Vector2( 309.117, 598.112 )
+position = Vector2( 300, 450 )
 
 [node name="53" type="Position2D" parent="Automate/Positions/PosInstructions"]
-position = Vector2( 365.918, 868.489 )
+position = Vector2( 750, 650 )
 
 [node name="54" type="Position2D" parent="Automate/Positions/PosInstructions"]
-position = Vector2( 1183.87, 713.988 )
+position = Vector2( 1500, 750 )
+
+[node name="55" type="Position2D" parent="Automate/Positions/PosInstructions"]
+position = Vector2( 1050, 750 )
+
+[node name="56" type="Position2D" parent="Automate/Positions/PosInstructions"]
+position = Vector2( 600, 650 )
+
+[node name="57" type="Position2D" parent="Automate/Positions/PosInstructions"]
+position = Vector2( 1050, 850 )
+
+[node name="58" type="Position2D" parent="Automate/Positions/PosInstructions"]
+position = Vector2( 450, 650 )
+
+[node name="59" type="Position2D" parent="Automate/Positions/PosInstructions"]
+position = Vector2( 900, 750 )
+
+[node name="60" type="Position2D" parent="Automate/Positions/PosInstructions"]
+position = Vector2( 300, 650 )
+
+[node name="61" type="Position2D" parent="Automate/Positions/PosInstructions"]
+position = Vector2( 300, 850 )
+
+[node name="62" type="Position2D" parent="Automate/Positions/PosInstructions"]
+position = Vector2( 300, 750 )
+
+[node name="63" type="Position2D" parent="Automate/Positions/PosInstructions"]
+position = Vector2( 450, 750 )
+
+[node name="64" type="Position2D" parent="Automate/Positions/PosInstructions"]
+position = Vector2( 450, 850 )
+
+[node name="65" type="Position2D" parent="Automate/Positions/PosInstructions"]
+position = Vector2( 600, 750 )
+
+[node name="66" type="Position2D" parent="Automate/Positions/PosInstructions"]
+position = Vector2( 600, 850 )
+
+[node name="67" type="Position2D" parent="Automate/Positions/PosInstructions"]
+position = Vector2( 750, 850 )
+
+[node name="68" type="Position2D" parent="Automate/Positions/PosInstructions"]
+position = Vector2( 750, 750 )
+
+[node name="69" type="Position2D" parent="Automate/Positions/PosInstructions"]
+position = Vector2( 900, 850 )
 
 [node name="Instructions" type="Node2D" parent="Automate"]
 
 [node name="Etats" type="Node2D" parent="Automate"]
 
 [node name="Etat" parent="Automate/Etats" instance=ExtResource( 1 )]
-position = Vector2( 423.731, 332.38 )
+position = Vector2( 600, 350 )
 nom = "S0"
 initial = true
 
 [node name="Etat2" parent="Automate/Etats" instance=ExtResource( 1 )]
-position = Vector2( 983.049, 748.347 )
+position = Vector2( 1000, 750 )
 nom = "S1"
 
 [node name="Etat3" parent="Automate/Etats" instance=ExtResource( 1 )]
-position = Vector2( 1401.92, 353.478 )
+position = Vector2( 1350, 350 )
 nom = "S2"
 final = true
 
@@ -617,10 +698,8 @@ margin_bottom = 70.0
 dialog_text = "Voulez vous déterminiser l'automate?"
 
 [node name="LireDialog" type="WindowDialog" parent="GUI"]
-visible = true
 margin_right = 696.0
 margin_bottom = 134.0
-popup_exclusive = true
 window_title = "Lire un mot"
 __meta__ = {
 "_edit_use_anchors_": false
