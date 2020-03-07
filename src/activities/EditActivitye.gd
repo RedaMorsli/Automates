@@ -45,7 +45,6 @@ func determiniser():
 	current_etat = [current_etat]
 	new_etats.append(current_etat)
 	
-
 	var name_id = 0
 	var stop = false
 	
@@ -102,8 +101,13 @@ func display_states_and_ins(states, ins):
 	for i in $Automate/Instructions.get_children():
 		i.queue_free()
 	for etat in states:
+		etat.connect("right_click_etat", $Automate, "_on_Etat_right_click_etat")
+		etat.connect("right_click_boucle", $Automate, "_on_right_click_boucle")
 		$Automate/Etats.add_child(etat)
 	for i in ins:
+		if i.etat_debut == i.etat_fin:
+			i.etat_debut.show_boucle(i.mot_lu)
+		i.connect("right_click_instruction", $Automate, "_on_right_click_instruction")
 		$Automate/Instructions.add_child(i)
 	reorganize_positions()
 

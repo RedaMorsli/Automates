@@ -104,7 +104,7 @@ func _on_NewLinkDialog_confirmed():
 			new_instruction.mot_lu.append(mot)
 			new_instruction.etat_debut = etat_debut
 			new_instruction.etat_fin = etat_fin
-			new_instruction.boucle = true
+			#new_instruction.boucle = true
 			etat_debut.show_boucle(new_instruction.mot_lu)
 			new_instruction.connect("right_click_instruction", self, "_on_right_click_instruction")
 			$Instructions.add_child(new_instruction)

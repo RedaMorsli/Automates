@@ -15,8 +15,9 @@ var inverse : bool = true
 var drag : bool
 
 func _draw():
-	if boucle:
+	if etat_debut == etat_fin:
 		$Arrow.hide()
+		$Arrow/CollisionShape2D.disabled = true
 		return
 		
 	var center = (etat_debut.position + etat_fin.position) / 2
