@@ -3,29 +3,15 @@ extends Node
 var Etat = preload("res://src/entities/Etat.tscn")
 var Instruction = preload("res://src/entities/Instruction.tscn")
 
-
 var rejected = []
 
 func _ready():
 	pass
 
 func _process(delta):
-	var t1 = ["a", "b", "c", "d"]
-	var t2 = ["b", "a", "c"]
-	var equal = true
-	for t in t1:
-		if t in t2:
-			continue
-		else:
-			equal = false
-			break
-	for t in t2:
-		if t in t1:
-			continue
-		else:
-			equal = false
-			break
-	print(equal)
+	#print(_get_successeur($Automate/Etats/Etat))
+	#for suc in _get_successeur($Automate/Etats/Etat):
+		#print(suc.nom) 
 	pass
 
 func determiniser():
@@ -149,6 +135,7 @@ func is_accessible(etat):
 	return _is_etat_accessible(_get_etat_initial(), etat)
 
 func is_coaccessible(etat):
+	rejected.clear()
 	return _is_etat_coaccessible(etat, etat)
 
 func smiplifier():
@@ -256,7 +243,6 @@ func _get_epsilon_clos(etat_epsilon): #rejected.clear() before call
 func _get_transitions(epsilon_clos):
 	return _get_instruction_without_mot(epsilon_clos, "€")
 
-
 func _get_epsilon_clos_trans(transition):
 	return _get_epsilon_clos(transition)
 
@@ -334,19 +320,20 @@ func _is_etat_accessible(etat_initial, etat):
 func _is_etat_coaccessible(etat, etat_root):
 	if etat.final:
 		return true
-	if etat == etat_root:
-		rejected.clear()
+	#if etat == etat_root:
+		#rejected.clear()
 	rejected.append(etat)
 	for suc in _get_successeur(etat):
-		if suc.final:
-			return true
+		var nom = suc.nom
 		if suc in rejected:
 			continue
+		if suc.final:
+			return true
 		else:
 			rejected.append(suc)
-	for suc in _get_successeur(etat):
-		if _is_etat_coaccessible(suc, etat_root):
-			return true
+			if _is_etat_coaccessible(suc, etat_root):
+				return true
+	#for suc in _get_successeur(etat):
 	if etat == etat_root:
 		return false
 
@@ -414,7 +401,6 @@ func _on_ReductionDialog_confirmed():
 		if (not is_accessible(etat)) or (not is_coaccessible(etat)):
 			delete(etat)
 
-
 func _on_PopupOperations_id_pressed(id):
 	match id:
 		1:#Réduction
@@ -445,7 +431,6 @@ func _on_PopupOperations_id_pressed(id):
 			delete_epsilons()
 		3:#determiniser
 			determiniser()
-
 
 func _on_PopupAutomate_id_pressed(id):
 	match id:
