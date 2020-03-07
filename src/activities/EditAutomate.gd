@@ -57,12 +57,12 @@ func _on_PopupMenuVoid_id_pressed(id):
 		0:#New état
 			$Popups/NewEtatDialog.popup_centered_ratio(0.2)
 		1:#New instruction
-			$Popups/NewLinkDialog/VBoxContainer/HBoxContainer2/EtatDebut.clear()
-			$Popups/NewLinkDialog/VBoxContainer/HBoxContainer3/EtatFin.clear()
+			$Popups/NewLinkDialog/MarginContainer/VBoxContainer/HBoxContainer2/EtatDebut.clear()
+			$Popups/NewLinkDialog/MarginContainer/VBoxContainer/HBoxContainer3/EtatFin.clear()
 			for etat in $Etats.get_children():
-				$Popups/NewLinkDialog/VBoxContainer/HBoxContainer2/EtatDebut.add_item(etat.nom)
-				$Popups/NewLinkDialog/VBoxContainer/HBoxContainer3/EtatFin.add_item(etat.nom)
-			$Popups/NewLinkDialog.popup_centered_ratio(0.4)
+				$Popups/NewLinkDialog/MarginContainer/VBoxContainer/HBoxContainer2/EtatDebut.add_item(etat.nom)
+				$Popups/NewLinkDialog/MarginContainer/VBoxContainer/HBoxContainer3/EtatFin.add_item(etat.nom)
+			$Popups/NewLinkDialog.popup_centered()
 
 
 func _on_NewEtatDialog_confirmed():
@@ -89,9 +89,9 @@ func _on_PopupMenuEtat_id_pressed(id):
 
 
 func _on_NewLinkDialog_confirmed():
-	var debut = $Popups/NewLinkDialog/VBoxContainer/HBoxContainer2/EtatDebut.selected
-	var fin = $Popups/NewLinkDialog/VBoxContainer/HBoxContainer3/EtatFin.selected
-	var mot = $Popups/NewLinkDialog/VBoxContainer/HBoxContainer4/Mot.text
+	var debut = $Popups/NewLinkDialog/MarginContainer/VBoxContainer/HBoxContainer2/EtatDebut.selected
+	var fin = $Popups/NewLinkDialog/MarginContainer/VBoxContainer/HBoxContainer3/EtatFin.selected
+	var mot = $Popups/NewLinkDialog/MarginContainer/VBoxContainer/HBoxContainer4/Mot.text
 	if mot.length() == 0:
 		mot = "€"
 	var etat_debut =  $Etats.get_child(debut)
@@ -113,7 +113,6 @@ func _on_NewLinkDialog_confirmed():
 			if not (mot in new_instruction.mot_lu):
 				new_instruction.mot_lu.append(mot)
 			etat_debut.show_boucle(new_instruction.mot_lu)
-			print(new_instruction.mot_lu)
 	else:
 		if  new_instruction == null:
 			new_instruction = Instruction.instance()

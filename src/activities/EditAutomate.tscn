@@ -26,7 +26,7 @@ is_camera_control_enabeled = true
 position = Vector2( 156.854, 536.401 )
 
 [node name="1" type="Position2D" parent="Automate/Positions/PosEtats"]
-position = Vector2( 1763.21, 540.945 )
+position = Vector2( 1793.43, 506.409 )
 
 [node name="2" type="Position2D" parent="Automate/Positions/PosEtats"]
 position = Vector2( 1008.88, 152.42 )
@@ -56,7 +56,7 @@ position = Vector2( 1251.99, 145.604 )
 position = Vector2( 1774.57, 356.907 )
 
 [node name="11" type="Position2D" parent="Automate/Positions/PosEtats"]
-position = Vector2( 1747.31, 738.615 )
+position = Vector2( 1779.68, 680.337 )
 
 [node name="12" type="Position2D" parent="Automate/Positions/PosEtats"]
 position = Vector2( 1495.11, 977.183 )
@@ -77,7 +77,7 @@ position = Vector2( 788.491, 995.36 )
 position = Vector2( 1504.19, 147.876 )
 
 [node name="18" type="Position2D" parent="Automate/Positions/PosEtats"]
-position = Vector2( 1261.08, 965.823 )
+position = Vector2( 1267.56, 993.883 )
 
 [node name="19" type="Position2D" parent="Automate/Positions/PosEtats"]
 position = Vector2( 493.121, 161.508 )
@@ -259,7 +259,7 @@ nom = "S0"
 initial = true
 
 [node name="Etat2" parent="Automate/Etats" instance=ExtResource( 1 )]
-position = Vector2( 939.879, 696.543 )
+position = Vector2( 983.049, 748.347 )
 nom = "S1"
 
 [node name="Etat3" parent="Automate/Etats" instance=ExtResource( 1 )]
@@ -389,20 +389,35 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="VBoxContainer" type="VBoxContainer" parent="Automate/Popups/NewLinkDialog"]
+[node name="MarginContainer" type="MarginContainer" parent="Automate/Popups/NewLinkDialog"]
+anchor_right = 1.0
+anchor_bottom = 1.0
 margin_left = 8.0
 margin_top = 8.0
-margin_right = 251.0
-margin_bottom = 160.0
+margin_right = -8.0
+margin_bottom = -36.0
+custom_constants/margin_right = 20
+custom_constants/margin_top = 20
+custom_constants/margin_left = 20
+custom_constants/margin_bottom = 20
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Automate/Popups/NewLinkDialog/MarginContainer"]
+margin_left = 20.0
+margin_top = 20.0
+margin_right = 279.0
+margin_bottom = 172.0
 custom_constants/separation = 20
 
-[node name="HBoxContainer2" type="HBoxContainer" parent="Automate/Popups/NewLinkDialog/VBoxContainer"]
-margin_right = 243.0
+[node name="HBoxContainer2" type="HBoxContainer" parent="Automate/Popups/NewLinkDialog/MarginContainer/VBoxContainer"]
+margin_right = 259.0
 margin_bottom = 36.0
 
-[node name="Debut" type="Label" parent="Automate/Popups/NewLinkDialog/VBoxContainer/HBoxContainer2"]
+[node name="Debut" type="Label" parent="Automate/Popups/NewLinkDialog/MarginContainer/VBoxContainer/HBoxContainer2"]
 margin_top = 3.0
-margin_right = 152.0
+margin_right = 170.0
 margin_bottom = 33.0
 size_flags_horizontal = 3
 custom_fonts/font = ExtResource( 5 )
@@ -411,23 +426,23 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="EtatDebut" type="OptionButton" parent="Automate/Popups/NewLinkDialog/VBoxContainer/HBoxContainer2"]
-margin_left = 156.0
-margin_right = 243.0
+[node name="EtatDebut" type="OptionButton" parent="Automate/Popups/NewLinkDialog/MarginContainer/VBoxContainer/HBoxContainer2"]
+margin_left = 174.0
+margin_right = 259.0
 margin_bottom = 36.0
-size_flags_horizontal = 3
 custom_fonts/font = ExtResource( 5 )
 text = "Etat"
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="HBoxContainer4" type="HBoxContainer" parent="Automate/Popups/NewLinkDialog/VBoxContainer"]
+[node name="HBoxContainer4" type="HBoxContainer" parent="Automate/Popups/NewLinkDialog/MarginContainer/VBoxContainer"]
 margin_top = 56.0
-margin_right = 243.0
+margin_right = 259.0
 margin_bottom = 96.0
+custom_constants/separation = 20
 
-[node name="MotLus" type="Label" parent="Automate/Popups/NewLinkDialog/VBoxContainer/HBoxContainer4"]
+[node name="MotLus" type="Label" parent="Automate/Popups/NewLinkDialog/MarginContainer/VBoxContainer/HBoxContainer4"]
 margin_top = 5.0
 margin_right = 133.0
 margin_bottom = 35.0
@@ -438,21 +453,21 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Mot" type="LineEdit" parent="Automate/Popups/NewLinkDialog/VBoxContainer/HBoxContainer4"]
-margin_left = 137.0
-margin_right = 243.0
+[node name="Mot" type="LineEdit" parent="Automate/Popups/NewLinkDialog/MarginContainer/VBoxContainer/HBoxContainer4"]
+margin_left = 153.0
+margin_right = 259.0
 margin_bottom = 40.0
 size_flags_horizontal = 3
 custom_fonts/font = ExtResource( 5 )
 
-[node name="HBoxContainer3" type="HBoxContainer" parent="Automate/Popups/NewLinkDialog/VBoxContainer"]
+[node name="HBoxContainer3" type="HBoxContainer" parent="Automate/Popups/NewLinkDialog/MarginContainer/VBoxContainer"]
 margin_top = 116.0
-margin_right = 243.0
+margin_right = 259.0
 margin_bottom = 152.0
 
-[node name="Fin" type="Label" parent="Automate/Popups/NewLinkDialog/VBoxContainer/HBoxContainer3"]
+[node name="Fin" type="Label" parent="Automate/Popups/NewLinkDialog/MarginContainer/VBoxContainer/HBoxContainer3"]
 margin_top = 3.0
-margin_right = 119.0
+margin_right = 170.0
 margin_bottom = 33.0
 size_flags_horizontal = 3
 custom_fonts/font = ExtResource( 5 )
@@ -461,11 +476,10 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="EtatFin" type="OptionButton" parent="Automate/Popups/NewLinkDialog/VBoxContainer/HBoxContainer3"]
-margin_left = 123.0
-margin_right = 243.0
+[node name="EtatFin" type="OptionButton" parent="Automate/Popups/NewLinkDialog/MarginContainer/VBoxContainer/HBoxContainer3"]
+margin_left = 174.0
+margin_right = 259.0
 margin_bottom = 36.0
-size_flags_horizontal = 3
 custom_fonts/font = ExtResource( 5 )
 text = "Etat"
 __meta__ = {
@@ -601,6 +615,53 @@ dialog_text = "Voulez vous simplifier l'automate?"
 margin_right = 200.0
 margin_bottom = 70.0
 dialog_text = "Voulez vous déterminiser l'automate?"
+
+[node name="LireDialog" type="AcceptDialog" parent="GUI"]
+margin_right = 83.0
+margin_bottom = 58.0
+window_title = "Lire un mot"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="MarginContainer" type="MarginContainer" parent="GUI/LireDialog"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 8.0
+margin_top = 8.0
+margin_right = -8.0
+margin_bottom = -36.0
+custom_constants/margin_right = 20
+custom_constants/margin_top = 20
+custom_constants/margin_left = 20
+custom_constants/margin_bottom = 20
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="GUI/LireDialog/MarginContainer"]
+margin_left = 20.0
+margin_top = 20.0
+margin_right = 294.0
+margin_bottom = 60.0
+custom_constants/separation = 20
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Lire" type="Label" parent="GUI/LireDialog/MarginContainer/HBoxContainer2"]
+margin_top = 5.0
+margin_right = 54.0
+margin_bottom = 35.0
+custom_fonts/font = ExtResource( 5 )
+text = "Mot"
+
+[node name="Readed" type="LineEdit" parent="GUI/LireDialog/MarginContainer/HBoxContainer2"]
+margin_left = 74.0
+margin_right = 274.0
+margin_bottom = 40.0
+rect_min_size = Vector2( 200, 0 )
+custom_fonts/font = ExtResource( 5 )
 [connection signal="right_click_boucle" from="Automate/Etats/Etat" to="Automate" method="_on_right_click_boucle"]
 [connection signal="right_click_etat" from="Automate/Etats/Etat" to="Automate" method="_on_Etat_right_click_etat"]
 [connection signal="right_click_etat" from="Automate/Etats/Etat2" to="Automate" method="_on_Etat_right_click_etat"]
@@ -620,3 +681,4 @@ dialog_text = "Voulez vous déterminiser l'automate?"
 [connection signal="confirmed" from="GUI/ReductionDialog" to="." method="_on_ReductionDialog_confirmed"]
 [connection signal="confirmed" from="GUI/SimplifyDialog" to="." method="_on_SimplifyDialog_confirmed"]
 [connection signal="confirmed" from="GUI/DeterminateDialog" to="." method="_on_DeterminateDialog_confirmed"]
+[connection signal="confirmed" from="GUI/LireDialog" to="." method="_on_LireDialog_confirmed"]

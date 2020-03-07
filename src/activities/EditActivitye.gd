@@ -403,6 +403,8 @@ func _on_ReductionDialog_confirmed():
 
 func _on_PopupOperations_id_pressed(id):
 	match id:
+		0:
+			$GUI/LireDialog.popup_centered()
 		1:#Réduction
 			$GUI/ReductionDialog/MarginContainer/Tree.clear()
 			var root = $GUI/ReductionDialog/MarginContainer/Tree.create_item()
@@ -444,3 +446,7 @@ func _on_SimplifyDialog_confirmed():
 
 func _on_DeterminateDialog_confirmed():
 	determiniser()
+
+
+func _on_LireDialog_confirmed():
+	pass # Replace with function body.
