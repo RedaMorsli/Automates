@@ -14,8 +14,77 @@ var rejected = []
 func _ready():
 	pass
 
-func _process(delta):
-	pass
+func complementaire():
+	for etat in $Automate/Etats.get_children():
+		etat.set_final(!etat.final)
+	var alphabet = get_alphabet()
+	var p = Etat.instance()
+	p.nom = "P"
+	p.final = false
+	p.initial = false
+	p.position = Vector2(1700, 1000)
+	p.connect("right_click_etat", $Automate, "_on_Etat_right_click_etat")
+	p.connect("right_click_boucle", $Automate, "_on_right_click_boucle")
+	var p_ins = Instruction.instance()
+	p_ins.mot_lu = alphabet
+	p_ins.etat_debut = p
+	p_ins.etat_fin = p
+	p.show_boucle(p_ins.mot_lu)
+	var instructions = []
+	for etat in $Automate/Etats.get_children():
+		for x in alphabet:
+			var ins = _get_ins(etat, x)
+			if ins.size() == 0:
+				var new_ins = Instruction.instance()
+				new_ins.etat_debut = etat
+				new_ins.etat_fin = p
+				new_ins.mot_lu.append(x)
+				new_ins.connect("right_click_instruction", $Automate, "_on_right_click_instruction")
+				instructions.append(new_ins)
+				#$Automate/Instructions.add_child(new_ins)
+				
+	if !instructions.empty():
+		$Automate/Etats.add_child(p)
+		$Automate/Instructions.add_child(p_ins)
+		for i in instructions:
+			$Automate/Instructions.add_child(i)
+
+func miroir():
+	for ins in $Automate/Instructions.get_children():
+		var etat = ins.etat_debut
+		ins.etat_debut = ins.etat_fin
+		ins.etat_fin = etat
+		var reverse = []
+		for word in ins.mot_lu:
+			reverse.append(string_reverse(word))
+		ins.mot_lu = reverse
+		if ins.etat_debut == ins.etat_fin:
+			ins.etat_debut.show_boucle(ins.mot_lu)
+	for etat in $Automate/Etats.get_children():
+		if etat.final and etat.initial:
+			continue
+		if etat.final:
+			etat.set_final(false)
+			etat.set_initial(true)
+			continue
+		if etat.initial:
+			etat.set_final(true)
+			etat.set_initial(false)
+			continue
+
+func string_reverse(a):
+	var b
+	var c = []
+	var d = []
+	for b in a:
+		c.append(b)
+	while c.size() > 0:
+		d.append(c.back())
+		c.pop_back()
+		a = ""
+	for b in d:
+		a = a + str(b)
+	return(a)
 
 func read_word(word : String):
 	for ins in $Automate/Instructions.get_children():
@@ -60,6 +129,24 @@ func _get_ins(etat_debut, x):
 		if (etat_debut == ins.etat_debut) and (x in ins.mot_lu):
 			t.append(ins)
 	return t
+
+func is_simple():
+	for ins in $Automate/Instructions.get_children():
+		if "€" in ins.mot_lu:
+			return false
+		for word in ins.mot_lu:
+			if word.length() > 1:
+				return false
+	return true
+
+func is_deterministe():
+	var alphabet = get_alphabet()
+	for etat in $Automate/Etats.get_children():
+		for x in alphabet:
+			var ins =  _get_ins(etat, x)
+			if ins.size() > 1:
+				return false
+	return true
 
 func determiniser():
 	var alphabet = get_alphabet()
@@ -451,7 +538,12 @@ func _on_ReductionDialog_confirmed():
 func _on_PopupOperations_id_pressed(id):
 	match id:
 		0: #Read word
-			$GUI/LireDialog.popup_centered()
+			if (not is_simple()) or (not is_deterministe()):
+				$GUI/LireDialog/MarginContainer2/VBoxContainer/HBoxContainer3/ResultatText.text = "automate non déterminisé"
+				$GUI/DeterminateDialog.popup_centered()
+			else:
+				$GUI/LireDialog.popup_centered()
+				$GUI/LireDialog/MarginContainer2/VBoxContainer/HBoxContainer3/ResultatText.text = ""
 		1:#Réduction
 			$GUI/ReductionDialog/MarginContainer/Tree.clear()
 			var root = $GUI/ReductionDialog/MarginContainer/Tree.create_item()
@@ -479,6 +571,10 @@ func _on_PopupOperations_id_pressed(id):
 			$GUI/SimplifyDialog.popup_centered()
 		3:#determiniser
 			$GUI/DeterminateDialog.popup_centered()
+		4:#miroir
+			$GUI/MiroirDialog.popup_centered()
+		5:#complémentaire
+			$GUI/ComplementaireDialog.popup_centered()
 
 func _on_PopupAutomate_id_pressed(id):
 	match id:
@@ -490,7 +586,22 @@ func _on_SimplifyDialog_confirmed():
 	delete_epsilons()
 
 func _on_DeterminateDialog_confirmed():
+	smiplifier()
+	delete_epsilons()
 	determiniser()
 
 func _on_LireButton_pressed():
 	read_word($GUI/LireDialog/MarginContainer2/VBoxContainer/HBoxContainer2/LireText.text)
+
+
+func _on_LireDialog_popup_hide():
+	for ins in $Automate/Instructions.get_children():
+			ins.color = WHITE
+
+
+func _on_MiroirDialog_confirmed():
+	miroir()
+
+
+func _on_ComplementaireDialog_confirmed():
+	complementaire()

@@ -635,7 +635,7 @@ margin_bottom = 307.0
 custom_fonts/font = ExtResource( 5 )
 custom_constants/vseparation = 20
 custom_constants/hseparation = 20
-items = [ "Lire un mot", null, 0, false, false, 0, 0, null, "", false, "Réduction de l'automate", null, 0, false, false, 1, 0, null, "", false, "Simplifier l'automate", null, 0, false, false, 2, 0, null, "", false, "Déterminiser l'automate", null, 0, false, false, 3, 0, null, "", false, "Automate complément", null, 0, false, false, 4, 0, null, "", false, "Automate miroir", null, 0, false, false, 5, 0, null, "", false ]
+items = [ "Lire un mot (si déterministe)", null, 0, false, false, 0, 0, null, "", false, "Réduction de l'automate", null, 0, false, false, 1, 0, null, "", false, "Simplifier l'automate", null, 0, false, false, 2, 0, null, "", false, "Déterminiser l'automate", null, 0, false, false, 3, 0, null, "", false, "Automate miroir", null, 0, false, false, 4, 0, null, "", false, "Automate complémentaire", null, 0, false, false, 5, 0, null, "", false ]
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -780,6 +780,18 @@ size_flags_horizontal = 3
 size_flags_vertical = 5
 custom_fonts/font = ExtResource( 5 )
 align = 1
+
+[node name="MiroirDialog" type="ConfirmationDialog" parent="GUI"]
+margin_right = 200.0
+margin_bottom = 70.0
+window_title = "Automate miroir"
+dialog_text = "Voulez vous transformer l'automate en son automate miroir?"
+
+[node name="ComplementaireDialog" type="ConfirmationDialog" parent="GUI"]
+margin_right = 200.0
+margin_bottom = 70.0
+window_title = "Automate complémentaire"
+dialog_text = "Voulez vous transformer l'automate en son automate complémentaire?"
 [connection signal="right_click_boucle" from="Automate/Etats/Etat" to="Automate" method="_on_right_click_boucle"]
 [connection signal="right_click_etat" from="Automate/Etats/Etat" to="Automate" method="_on_Etat_right_click_etat"]
 [connection signal="right_click_etat" from="Automate/Etats/Etat2" to="Automate" method="_on_Etat_right_click_etat"]
@@ -799,4 +811,7 @@ align = 1
 [connection signal="confirmed" from="GUI/ReductionDialog" to="." method="_on_ReductionDialog_confirmed"]
 [connection signal="confirmed" from="GUI/SimplifyDialog" to="." method="_on_SimplifyDialog_confirmed"]
 [connection signal="confirmed" from="GUI/DeterminateDialog" to="." method="_on_DeterminateDialog_confirmed"]
+[connection signal="popup_hide" from="GUI/LireDialog" to="." method="_on_LireDialog_popup_hide"]
 [connection signal="pressed" from="GUI/LireDialog/MarginContainer2/VBoxContainer/HBoxContainer2/LireButton" to="." method="_on_LireButton_pressed"]
+[connection signal="confirmed" from="GUI/MiroirDialog" to="." method="_on_MiroirDialog_confirmed"]
+[connection signal="confirmed" from="GUI/ComplementaireDialog" to="." method="_on_ComplementaireDialog_confirmed"]
