@@ -591,6 +591,16 @@ margin_bottom = 21.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 columns = 3
+
+[node name="SimplifyDialog" type="ConfirmationDialog" parent="GUI"]
+margin_right = 200.0
+margin_bottom = 70.0
+dialog_text = "Voulez vous simplifier l'automate?"
+
+[node name="DeterminateDialog" type="ConfirmationDialog" parent="GUI"]
+margin_right = 200.0
+margin_bottom = 70.0
+dialog_text = "Voulez vous déterminiser l'automate?"
 [connection signal="right_click_boucle" from="Automate/Etats/Etat" to="Automate" method="_on_right_click_boucle"]
 [connection signal="right_click_etat" from="Automate/Etats/Etat" to="Automate" method="_on_Etat_right_click_etat"]
 [connection signal="right_click_etat" from="Automate/Etats/Etat2" to="Automate" method="_on_Etat_right_click_etat"]
@@ -608,3 +618,5 @@ columns = 3
 [connection signal="id_pressed" from="GUI/PopupAutomate" to="." method="_on_PopupAutomate_id_pressed"]
 [connection signal="id_pressed" from="GUI/PopupOperations" to="." method="_on_PopupOperations_id_pressed"]
 [connection signal="confirmed" from="GUI/ReductionDialog" to="." method="_on_ReductionDialog_confirmed"]
+[connection signal="confirmed" from="GUI/SimplifyDialog" to="." method="_on_SimplifyDialog_confirmed"]
+[connection signal="confirmed" from="GUI/DeterminateDialog" to="." method="_on_DeterminateDialog_confirmed"]

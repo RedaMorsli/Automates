@@ -101,7 +101,8 @@ func _on_NewLinkDialog_confirmed():
 	if etat_debut == etat_fin:
 		if new_instruction == null:
 			new_instruction = Instruction.instance()
-			new_instruction.mot_lu.append(mot)
+			if not (mot in new_instruction.mot_lu):
+				new_instruction.mot_lu.append(mot)
 			new_instruction.etat_debut = etat_debut
 			new_instruction.etat_fin = etat_fin
 			#new_instruction.boucle = true
@@ -109,7 +110,8 @@ func _on_NewLinkDialog_confirmed():
 			new_instruction.connect("right_click_instruction", self, "_on_right_click_instruction")
 			$Instructions.add_child(new_instruction)
 		else:
-			new_instruction.mot_lu.append(mot)
+			if not (mot in new_instruction.mot_lu):
+				new_instruction.mot_lu.append(mot)
 			etat_debut.show_boucle(new_instruction.mot_lu)
 			print(new_instruction.mot_lu)
 	else:
@@ -119,11 +121,11 @@ func _on_NewLinkDialog_confirmed():
 			new_instruction.etat_fin = etat_fin
 			new_instruction.connect("right_click_instruction", self, "_on_right_click_instruction")
 			$Instructions.add_child(new_instruction)
-	
-		new_instruction.mot_lu.append(mot)
+		if not (mot in new_instruction.mot_lu):
+			new_instruction.mot_lu.append(mot)
 
 func _ins_exists(debut, fin):
-	for	child in $Instructions.get_children():
+	for child in $Instructions.get_children():
 		if (child.etat_debut == debut) and (child.etat_fin == fin):
 			return child
 	return null

@@ -427,12 +427,20 @@ func _on_PopupOperations_id_pressed(id):
 					child.set_text(0, etat.nom)
 			$GUI/ReductionDialog.popup_centered_ratio(0.4)
 		2:#simplifier
-			smiplifier()
-			delete_epsilons()
+			$GUI/SimplifyDialog.popup_centered()
 		3:#determiniser
-			determiniser()
+			$GUI/DeterminateDialog.popup_centered()
 
 func _on_PopupAutomate_id_pressed(id):
 	match id:
 		0: #reorganizer
 			reorganize_positions()
+
+
+func _on_SimplifyDialog_confirmed():
+	smiplifier()
+	delete_epsilons()
+
+
+func _on_DeterminateDialog_confirmed():
+	determiniser()
