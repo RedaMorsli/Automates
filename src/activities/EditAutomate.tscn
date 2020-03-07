@@ -261,6 +261,7 @@ initial = true
 [node name="Etat2" parent="Automate/Etats" instance=ExtResource( 1 )]
 position = Vector2( 939.879, 696.543 )
 nom = "S1"
+final = true
 
 [node name="Etat3" parent="Automate/Etats" instance=ExtResource( 1 )]
 position = Vector2( 1401.92, 353.478 )

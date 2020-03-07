@@ -72,6 +72,7 @@ func _on_NewEtatDialog_confirmed():
 	new_etat.final = $Popups/NewEtatDialog/VBoxContainer/HBoxContainer2/CheckFinal.pressed
 	new_etat.position = last_right_click_position
 	new_etat.connect("right_click_etat", self, "_on_Etat_right_click_etat")
+	new_etat.connect("right_click_boucle", self, "_on_right_click_boucle")
 	$Etats.add_child(new_etat)
 
 

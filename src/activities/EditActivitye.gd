@@ -10,7 +10,136 @@ func _ready():
 	pass
 
 func _process(delta):
+	var t1 = ["a", "b", "c", "d"]
+	var t2 = ["b", "a", "c"]
+	var equal = true
+	for t in t1:
+		if t in t2:
+			continue
+		else:
+			equal = false
+			break
+	for t in t2:
+		if t in t1:
+			continue
+		else:
+			equal = false
+			break
+	print(equal)
 	pass
+
+func determiniser():
+	var alphabet = get_alphabet()
+	var new_etats = []
+	var new_names = []
+	var not_treated_etats = []
+	var new_ins = []
+	
+	var current_etat = _get_etat_initial()
+	var s0 = Etat.instance()
+	s0.nom = "S0"
+	s0.initial = true
+	s0.final = current_etat.final
+	new_names.append(s0)
+	
+	current_etat = [current_etat]
+	new_etats.append(current_etat)
+	
+
+	var name_id = 0
+	var stop = false
+	
+	while(!stop):
+		for c in alphabet:
+			var etat = get_states_when_read_x(current_etat, c)
+			if etat.empty():
+				continue
+			var exist = false
+			var etat_if_exist
+			for state in new_etats:
+				if states_equal(state, etat):
+					exist = true
+					etat_if_exist = new_names[new_etats.find(state)]
+					break
+			if not exist: 
+				new_etats.append(etat)
+				not_treated_etats.append(etat)
+				name_id += 1
+				#create etat instance
+				var s = Etat.instance()
+				s.nom = "S" + String(name_id)
+				s.initial = false
+				s.final = false
+				for state in etat:
+					if state.final:
+						s.final = true
+						break
+				new_names.append(s)
+				#create instruction instance
+				var ins = Instruction.instance()
+				ins.mot_lu.append(c)
+				ins.etat_debut = new_names[new_etats.find(current_etat)]
+				ins.etat_fin = s
+				new_ins.append(ins)
+			else: #etat exists
+				var ins = Instruction.instance()
+				ins.mot_lu.append(c)
+				ins.etat_debut = new_names[new_etats.find(current_etat)]
+				ins.etat_fin = etat_if_exist
+				new_ins.append(ins)
+				pass
+		not_treated_etats.erase(current_etat)
+		if not_treated_etats.empty():
+			stop = true
+		else:
+			current_etat = not_treated_etats[0]
+	
+	display_states_and_ins(new_names, new_ins)
+
+func display_states_and_ins(states, ins):
+	for etat in $Automate/Etats.get_children():
+		etat.queue_free()
+	for i in $Automate/Instructions.get_children():
+		i.queue_free()
+	for etat in states:
+		$Automate/Etats.add_child(etat)
+	for i in ins:
+		$Automate/Instructions.add_child(i)
+	reorganize_positions()
+
+func get_states_when_read_x(states, x):
+	var etats = []
+	for s in states:
+		for e in _get_successeur_mot(s, x):
+			if not (e in etats):
+				etats.append(e)
+	return etats
+
+func states_equal(etat1, etat2):
+	var equal = true
+	for etat in etat1:
+		if etat in etat2:
+			continue
+		else:
+			equal = false
+			break
+	if equal:
+		for etat in etat2:
+			if etat in etat1:
+				continue
+			else:
+				equal = false
+				break
+	return equal
+
+func get_alphabet():
+	var alphabet = []
+	for ins in $Automate/Instructions.get_children():
+		for word in ins.mot_lu:
+			for i in range(word.length()):
+				if not (word[i] in alphabet):
+					alphabet.append(word[i])
+	return alphabet
 
 func is_accessible(etat):
 	return _is_etat_accessible(_get_etat_initial(), etat)
@@ -47,6 +176,7 @@ func decomposer(instrcution):
 			for i in range(word.length() - 1):
 				var etat = Etat.instance()
 				etat.connect("right_click_etat", $Automate, "_on_Etat_right_click_etat")
+				etat.connect("right_click_boucle", $Automate, "_on_right_click_boucle")
 				etat.nom = word[i] + word[i+1]
 				new_etats.append(etat)
 			var i = 0
@@ -85,20 +215,15 @@ func decomposer(instrcution):
 
 func delete_epsilons():
 	for etat_epsilon in _get_etats_epsilon():
-		print("S : ", etat_epsilon.nom)
 		rejected.clear()
 		for clos in _get_epsilon_clos(etat_epsilon):
-			print("€-clos : ", clos.nom)
 			if clos.final:
 				etat_epsilon.set_final(true)
 			for trans in _get_transitions(clos):
 				rejected.clear()
-				print("trans : ", trans.etat_debut.nom, trans.mot_lu, trans.etat_fin.nom)
 				for etat in _get_epsilon_clos_trans(trans.etat_fin):
-					print("€-clos trans : ", etat.nom)
 					for c in trans.mot_lu:
 						#if c != "€":
-						print("added : ",etat_epsilon.nom, c, etat.nom)
 						add_trans(etat_epsilon, etat, c)
 	
 	for ins in $Automate/Instructions.get_children():
@@ -314,6 +439,8 @@ func _on_PopupOperations_id_pressed(id):
 		2:#simplifier
 			smiplifier()
 			delete_epsilons()
+		3:#determiniser
+			determiniser()
 
 
 func _on_PopupAutomate_id_pressed(id):
