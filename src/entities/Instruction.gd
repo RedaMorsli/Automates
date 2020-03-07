@@ -2,14 +2,12 @@ extends Node2D
 
 signal right_click_instruction(instruction)
 
-#Colors
-const white = Color(1, 1, 1, 1)
-const blue = Color(0, 0, 1, 1)
 
 var etat_debut : KinematicBody2D
 var mot_lu = []
 var etat_fin : KinematicBody2D
 
+var color = Color(1, 1, 1, 1)
 var boucle = false
 var inverse : bool = true
 var drag : bool
@@ -30,8 +28,8 @@ func _draw():
 	var radius = etat_debut.position.distance_to(center)
 	
 	#draw link
-	draw_line(etat_debut.position, $Arrow.position, Color(1, 1, 1, 1), 10)
-	draw_line($Arrow.position, etat_fin.position, Color(1, 1, 1, 1), 10)
+	draw_line(etat_debut.position, $Arrow.position, color, 10)
+	draw_line($Arrow.position, etat_fin.position, color, 10)
 	#if inverse:
 		#draw_arc(center, radius, end_iverse, start_inverse, 32, Color(1, 1, 1, 1), 10)
 	#else:

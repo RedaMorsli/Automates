@@ -1,5 +1,11 @@
 extends Node
 
+#Colors
+const WHITE = Color(1, 1, 1, 1)
+const RED = Color(1, 0, 0, 1)
+const GREEN = Color(0, 1, 0, 1)
+const BLUE = Color(0, 0, 1, 1)
+
 var Etat = preload("res://src/entities/Etat.tscn")
 var Instruction = preload("res://src/entities/Instruction.tscn")
 
@@ -9,10 +15,51 @@ func _ready():
 	pass
 
 func _process(delta):
-	#print(_get_successeur($Automate/Etats/Etat))
-	#for suc in _get_successeur($Automate/Etats/Etat):
-		#print(suc.nom) 
 	pass
+
+func read_word(word : String):
+	for ins in $Automate/Instructions.get_children():
+			ins.color = WHITE
+	var etats_parcouru = []
+	var ins_parcouru = []
+	match is_word_readable(word, etats_parcouru, ins_parcouru):
+		true:
+			for ins in ins_parcouru:
+				ins.color = GREEN
+		false:
+			$GUI/LireDialog/MarginContainer2/VBoxContainer/HBoxContainer3/ResultatText.text = "n'appartient pas à L(A)"
+			for ins in ins_parcouru:
+				ins.color = RED
+		"nope":
+			$GUI/LireDialog/MarginContainer2/VBoxContainer/HBoxContainer3/ResultatText.text = "automate non déterminisé"
+			$GUI/DeterminateDialog.popup_centered()
+
+func is_word_readable(word : String, etats_parcouru : Array, ins_parcouru : Array):
+	var current_etat = _get_etat_initial()
+	for i in word.length():
+		var ins = _get_ins(current_etat, word[i])
+		if ins.size() > 1: #non déterministe
+			return "nope"
+		elif ins.size() == 0: #n'appartient pas au L(A)
+			return false
+		else: # ins.size() == 1
+			if not (ins[0].etat_debut in etats_parcouru):
+				etats_parcouru.append(ins[0].etat_debut)
+			if not (ins[0].etat_fin in etats_parcouru):
+				etats_parcouru.append(ins[0].etat_fin)
+			if not (ins[0] in ins_parcouru):
+				ins_parcouru.append(ins[0])
+			current_etat = ins[0].etat_fin
+	if current_etat.final:
+		$GUI/LireDialog/MarginContainer2/VBoxContainer/HBoxContainer3/ResultatText.text = "appartient à L(A)"
+	return current_etat.final
+
+func _get_ins(etat_debut, x):
+	var t = []
+	for ins in $Automate/Instructions.get_children():
+		if (etat_debut == ins.etat_debut) and (x in ins.mot_lu):
+			t.append(ins)
+	return t
 
 func determiniser():
 	var alphabet = get_alphabet()
@@ -403,7 +450,7 @@ func _on_ReductionDialog_confirmed():
 
 func _on_PopupOperations_id_pressed(id):
 	match id:
-		0:
+		0: #Read word
 			$GUI/LireDialog.popup_centered()
 		1:#Réduction
 			$GUI/ReductionDialog/MarginContainer/Tree.clear()
@@ -438,15 +485,12 @@ func _on_PopupAutomate_id_pressed(id):
 		0: #reorganizer
 			reorganize_positions()
 
-
 func _on_SimplifyDialog_confirmed():
 	smiplifier()
 	delete_epsilons()
 
-
 func _on_DeterminateDialog_confirmed():
 	determiniser()
 
-
-func _on_LireDialog_confirmed():
-	pass # Replace with function body.
+func _on_LireButton_pressed():
+	read_word($GUI/LireDialog/MarginContainer2/VBoxContainer/HBoxContainer2/LireText.text)

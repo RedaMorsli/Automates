@@ -140,7 +140,6 @@ func _on_right_click_boucle(etat):
 	for child in $Instructions.get_children():
 		if (child.etat_debut == etat) and (child.etat_fin == etat):
 			last_instruction_clicked = child
-	print(last_instruction_clicked.etat_debut.nom, last_instruction_clicked.etat_fin.nom)
 	$Popups/PopupMenuInstruction.rect_position = get_global_mouse_position()
 	$Popups/PopupMenuInstruction.popup()
 
