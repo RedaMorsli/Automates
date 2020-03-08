@@ -584,6 +584,8 @@ func _on_PopupAutomate_id_pressed(id):
 			reorganize_positions()
 		3:#delete all
 			$GUI/DeleteAllDialog.popup_centered()
+		7:#Quitter
+			$GUI/QuitDialog.popup_centered()
 
 func _on_SimplifyDialog_confirmed():
 	smiplifier()
@@ -616,3 +618,7 @@ func _on_DeleteAllDialog_confirmed():
 		ins.queue_free()
 	for etat in $Automate/Etats.get_children():
 		etat.queue_free()
+
+
+func _on_QuitDialog_confirmed():
+	get_tree().quit()

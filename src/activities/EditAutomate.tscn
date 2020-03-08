@@ -335,18 +335,9 @@ position = Vector2( 900, 850 )
 [node name="Etats" type="Node2D" parent="Automate"]
 
 [node name="Etat" parent="Automate/Etats" instance=ExtResource( 1 )]
-position = Vector2( 600, 350 )
+position = Vector2( 450, 450 )
 nom = "S0"
 initial = true
-
-[node name="Etat2" parent="Automate/Etats" instance=ExtResource( 1 )]
-position = Vector2( 1000, 750 )
-nom = "S1"
-
-[node name="Etat3" parent="Automate/Etats" instance=ExtResource( 1 )]
-position = Vector2( 1350, 350 )
-nom = "S2"
-final = true
 
 [node name="EditCamera" type="Camera2D" parent="Automate"]
 visible = false
@@ -368,7 +359,7 @@ margin_bottom = 280.0
 custom_fonts/font = ExtResource( 5 )
 custom_constants/vseparation = 20
 custom_constants/hseparation = 20
-items = [ "Editer état", ExtResource( 8 ), 0, false, false, 0, 0, null, "", false, "Supprimer état", ExtResource( 2 ), 0, false, false, 1, 0, null, "", false ]
+items = [ "Editer état", ExtResource( 8 ), 0, false, true, 0, 0, null, "", false, "Supprimer état", ExtResource( 2 ), 0, false, false, 1, 0, null, "", false ]
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -381,7 +372,7 @@ margin_bottom = 280.0
 custom_fonts/font = ExtResource( 5 )
 custom_constants/vseparation = 20
 custom_constants/hseparation = 20
-items = [ "Editer instruction", ExtResource( 8 ), 0, false, false, 0, 0, null, "", false, "Supprimer instruction", ExtResource( 2 ), 0, false, false, 1, 0, null, "", false ]
+items = [ "Editer instruction", ExtResource( 8 ), 0, false, true, 0, 0, null, "", false, "Supprimer instruction", ExtResource( 2 ), 0, false, false, 1, 0, null, "", false ]
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -622,7 +613,7 @@ margin_bottom = 157.0
 custom_fonts/font = ExtResource( 5 )
 custom_constants/vseparation = 20
 custom_constants/hseparation = 20
-items = [ "Détails automate", null, 0, false, false, 1, 0, null, "", false, "Réorganizer les positions", null, 0, false, false, 0, 0, null, "", false, "Supprimer tout", null, 0, false, false, 3, 0, null, "", false, "", null, 0, false, true, 2, 0, null, "", true, "Enregistrer", null, 0, false, false, 4, 0, null, "", false, "Enregistrer sous", null, 0, false, false, 5, 0, null, "", false, "Retour vers la liste des automates", null, 0, false, false, 6, 0, null, "", false, "Quitter", null, 0, false, false, 7, 0, null, "", false ]
+items = [ "Détails automate", null, 0, false, true, 1, 0, null, "", false, "Réorganizer les positions", null, 0, false, false, 0, 0, null, "", false, "Supprimer tout", null, 0, false, false, 3, 0, null, "", false, "", null, 0, false, true, 2, 0, null, "", true, "Enregistrer", null, 0, false, true, 4, 0, null, "", false, "Enregistrer sous", null, 0, false, true, 5, 0, null, "", false, "Retour vers la liste des automates", null, 0, false, true, 6, 0, null, "", false, "Quitter", null, 0, false, false, 7, 0, null, "", false ]
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -648,7 +639,7 @@ margin_bottom = 108.0
 custom_fonts/font = ExtResource( 5 )
 custom_constants/vseparation = 20
 custom_constants/hseparation = 20
-items = [ "Controls", null, 0, false, false, 0, 0, null, "", false ]
+items = [ "Controls", null, 0, false, true, 0, 0, null, "", false ]
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -798,13 +789,12 @@ margin_right = 200.0
 margin_bottom = 70.0
 dialog_text = "Voulez vous vraiment supprimer tous les états et instructiosn?"
 
-[node name="FileDialog" type="FileDialog" parent="GUI"]
-margin_right = 307.0
-margin_bottom = 130.0
+[node name="QuitDialog" type="ConfirmationDialog" parent="GUI"]
+margin_right = 200.0
+margin_bottom = 70.0
+dialog_text = "Voulez vous quitter le programme?"
 [connection signal="right_click_boucle" from="Automate/Etats/Etat" to="Automate" method="_on_right_click_boucle"]
 [connection signal="right_click_etat" from="Automate/Etats/Etat" to="Automate" method="_on_Etat_right_click_etat"]
-[connection signal="right_click_etat" from="Automate/Etats/Etat2" to="Automate" method="_on_Etat_right_click_etat"]
-[connection signal="right_click_etat" from="Automate/Etats/Etat3" to="Automate" method="_on_Etat_right_click_etat"]
 [connection signal="id_pressed" from="Automate/Popups/PopupMenuEtat" to="Automate" method="_on_PopupMenuEtat_id_pressed"]
 [connection signal="popup_hide" from="Automate/Popups/PopupMenuEtat" to="Automate" method="_on_PopupMenuEtat_popup_hide"]
 [connection signal="id_pressed" from="Automate/Popups/PopupMenuInstruction" to="Automate" method="_on_PopupMenuInstruction_id_pressed"]
@@ -825,3 +815,4 @@ margin_bottom = 130.0
 [connection signal="confirmed" from="GUI/MiroirDialog" to="." method="_on_MiroirDialog_confirmed"]
 [connection signal="confirmed" from="GUI/ComplementaireDialog" to="." method="_on_ComplementaireDialog_confirmed"]
 [connection signal="confirmed" from="GUI/DeleteAllDialog" to="." method="_on_DeleteAllDialog_confirmed"]
+[connection signal="confirmed" from="GUI/QuitDialog" to="." method="_on_QuitDialog_confirmed"]
