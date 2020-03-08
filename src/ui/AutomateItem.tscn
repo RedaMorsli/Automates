@@ -33,7 +33,7 @@ __meta__ = {
 [node name="VContainer" type="HBoxContainer" parent="MarginContainer"]
 margin_left = 20.0
 margin_top = 20.0
-margin_right = 1260.0
+margin_right = 1900.0
 margin_bottom = 120.0
 rect_min_size = Vector2( 0, 100 )
 alignment = 1
@@ -43,26 +43,26 @@ __meta__ = {
 }
 
 [node name="Nom" type="Button" parent="MarginContainer/VContainer"]
-margin_right = 1126.0
+margin_right = 1693.0
 margin_bottom = 100.0
-hint_tooltip = "Lancer l'automate"
+hint_tooltip = "Ouvrir l'automate"
 size_flags_horizontal = 3
 size_flags_vertical = 3
 custom_fonts/font = ExtResource( 1 )
-custom_colors/font_color = Color( 1, 1, 1, 1 )
+custom_colors/font_color = Color( 0.411765, 0.611765, 0.909804, 1 )
 custom_constants/hseparation = 20
 text = "Nom de l'automate"
 flat = true
 align = 0
 
-[node name="Editer" type="Button" parent="MarginContainer/VContainer"]
-margin_left = 1130.0
-margin_right = 1240.0
+[node name="Delete" type="Button" parent="MarginContainer/VContainer"]
+margin_left = 1697.0
+margin_right = 1880.0
 margin_bottom = 100.0
-hint_tooltip = "Editer l'automate"
+hint_tooltip = "Supprimer l'automate"
 custom_fonts/font = ExtResource( 1 )
-custom_colors/font_color = Color( 0.494118, 0.423529, 1, 1 )
-text = "Editer"
+custom_colors/font_color = Color( 1, 0, 0, 1 )
+text = "Supprimer"
 flat = true
 [connection signal="pressed" from="MarginContainer/VContainer/Nom" to="MarginContainer/VContainer" method="_on_automate_clicked_pressed"]
-[connection signal="pressed" from="MarginContainer/VContainer/Editer" to="MarginContainer/VContainer" method="_on_edit_automate__pressed"]
+[connection signal="pressed" from="MarginContainer/VContainer/Delete" to="MarginContainer/VContainer" method="_on_edit_automate__pressed"]

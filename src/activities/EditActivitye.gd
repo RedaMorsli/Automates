@@ -1,5 +1,7 @@
 extends Node
 
+var automate_name
+
 #Colors
 const WHITE = Color(1, 1, 1, 1)
 const RED = Color(1, 0, 0, 1)
@@ -20,7 +22,7 @@ func complementaire():
 	var alphabet = get_alphabet()
 	var p = Etat.instance()
 	p.nom = "P"
-	p.final = false
+	p.final = true
 	p.initial = false
 	p.position = Vector2(1700, 1000)
 	p.connect("right_click_etat", $Automate, "_on_Etat_right_click_etat")
@@ -580,6 +582,8 @@ func _on_PopupAutomate_id_pressed(id):
 	match id:
 		0: #reorganizer
 			reorganize_positions()
+		3:#delete all
+			$GUI/DeleteAllDialog.popup_centered()
 
 func _on_SimplifyDialog_confirmed():
 	smiplifier()
@@ -605,3 +609,10 @@ func _on_MiroirDialog_confirmed():
 
 func _on_ComplementaireDialog_confirmed():
 	complementaire()
+
+
+func _on_DeleteAllDialog_confirmed():
+	for ins in $Automate/Instructions.get_children():
+		ins.queue_free()
+	for etat in $Automate/Etats.get_children():
+		etat.queue_free()

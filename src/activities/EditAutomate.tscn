@@ -792,6 +792,15 @@ margin_right = 200.0
 margin_bottom = 70.0
 window_title = "Automate complémentaire"
 dialog_text = "Voulez vous transformer l'automate en son automate complémentaire?"
+
+[node name="DeleteAllDialog" type="ConfirmationDialog" parent="GUI"]
+margin_right = 200.0
+margin_bottom = 70.0
+dialog_text = "Voulez vous vraiment supprimer tous les états et instructiosn?"
+
+[node name="FileDialog" type="FileDialog" parent="GUI"]
+margin_right = 307.0
+margin_bottom = 130.0
 [connection signal="right_click_boucle" from="Automate/Etats/Etat" to="Automate" method="_on_right_click_boucle"]
 [connection signal="right_click_etat" from="Automate/Etats/Etat" to="Automate" method="_on_Etat_right_click_etat"]
 [connection signal="right_click_etat" from="Automate/Etats/Etat2" to="Automate" method="_on_Etat_right_click_etat"]
@@ -815,3 +824,4 @@ dialog_text = "Voulez vous transformer l'automate en son automate complémentair
 [connection signal="pressed" from="GUI/LireDialog/MarginContainer2/VBoxContainer/HBoxContainer2/LireButton" to="." method="_on_LireButton_pressed"]
 [connection signal="confirmed" from="GUI/MiroirDialog" to="." method="_on_MiroirDialog_confirmed"]
 [connection signal="confirmed" from="GUI/ComplementaireDialog" to="." method="_on_ComplementaireDialog_confirmed"]
+[connection signal="confirmed" from="GUI/DeleteAllDialog" to="." method="_on_DeleteAllDialog_confirmed"]

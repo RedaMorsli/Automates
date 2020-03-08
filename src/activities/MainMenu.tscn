@@ -20,6 +20,7 @@ __meta__ = {
 [node name="Menu" parent="." instance=ExtResource( 1 )]
 
 [node name="NewDialog" parent="." instance=ExtResource( 4 )]
+visible = false
 size_flags_vertical = 3
 [connection signal="add_clicked" from="Menu" to="NewDialog" method="_on_TopBar_add_clicked"]
-[connection signal="create_pressed" from="NewDialog" to="." method="_on_Paramtres_create_pressed"]
+[connection signal="create_pressed" from="NewDialog" to="." method="_on_NewDialog_create_pressed"]
