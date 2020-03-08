@@ -63,3 +63,15 @@ func hide_boucle():
 func _on_Boucle_input_event(viewport, event, shape_idx):
 	if event.is_action_pressed("ui_right_mouse"):
 		emit_signal("right_click_boucle", self)
+
+func save():
+	var save_dict = {
+		"nom" : nom,
+		"final" : final,
+		"initial" : initial,
+		"boucle" : $Boucle.visible,
+		"boucle_word" : $Boucle/BoucleLabel.text,
+		"pos_x" : position.x,
+		"pos_y" : position.y
+	}
+	return save_dict

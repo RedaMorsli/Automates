@@ -8,8 +8,6 @@ var mot_lu = []
 var etat_fin : KinematicBody2D
 
 var color = Color(1, 1, 1, 1)
-var boucle = false
-var inverse : bool = true
 var drag : bool
 
 func _draw():
@@ -46,8 +44,11 @@ func _draw():
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	$Arrow.position = (etat_debut.position + etat_fin.position) / 2
-	pass
+	center_position()
+
+func center_position():
+	var center = (etat_debut.position + etat_fin.position) / 2
+	$Arrow.position = (etat_debut.position + center) / 2
 
 func _process(delta):
 		update()
@@ -68,3 +69,13 @@ func _on_Arrow_input_event(viewport, event, shape_idx):
 			drag = false 
 	if event.is_action_pressed("ui_right_mouse"):
 		emit_signal("right_click_instruction", self)
+
+func save():
+	var save_dict = {
+		"debut" : etat_debut,
+		"fin" : etat_fin,
+		"mot" : mot_lu,
+		"pos_x" : position.x,
+		"pos_y" : position.y
+	}
+	return save_dict

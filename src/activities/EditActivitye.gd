@@ -527,6 +527,16 @@ func reorganize_positions():
 	for etat in $Automate/Etats.get_children():
 		etat.position = PosEtats[i].position
 		i += 1
+	for ins in $Automate/Instructions.get_children():
+		ins.center_position()
+
+func separer_etata_and_ins():
+	var PosEtats = $Automate/Positions/PosEtats.get_children()
+	var PosInstructions = $Automate/Positions/PosInstructions.get_children()
+	var i = 0
+	for etat in $Automate/Etats.get_children():
+		etat.position = PosEtats[i].position
+		i += 1
 	i = 0
 	for ins in $Automate/Instructions.get_children():
 		ins.set_arrow_positoin(PosInstructions[i].position)
@@ -580,12 +590,59 @@ func _on_PopupOperations_id_pressed(id):
 
 func _on_PopupAutomate_id_pressed(id):
 	match id:
-		0: #reorganizer
-			reorganize_positions()
-		3:#delete all
+		0: #détails
+			var tree = $GUI/DetailDialog/MarginContainer/DetailTree
+			tree.clear()
+			var root = tree.create_item()
+			root.set_text(0, "Automate")
+			
+			var simple = tree.create_item(root)
+			var s = "Oui" if is_simple() else "Non"
+			simple.set_text(0, "Simple : " + s)
+			
+			var deterministe = tree.create_item(root)
+			var d = "Oui" if (is_deterministe() and is_simple()) else "Non"
+			deterministe.set_text(0, "Déterministe : " + d)
+			
+			var alphabet = tree.create_item(root)
+			alphabet.set_text(0, "Alphabet")
+			var x = tree.create_item(alphabet)
+			x.set_text(0, str(get_alphabet()))
+			
+			var etats_initial = tree.create_item(root)
+			etats_initial.set_text(0, "Etat initial")
+			for etat in $Automate/Etats.get_children():
+				if etat.initial:
+					var child = tree.create_item(etats_initial)
+					child.set_text(0, etat.nom)
+			
+			var etats = tree.create_item(root)
+			etats.set_text(0, "Etats")
+			for etat in $Automate/Etats.get_children():
+				var child = tree.create_item(etats)
+				child.set_text(0, etat.nom)
+			
+			var etats_finaux = tree.create_item(root)
+			etats_finaux.set_text(0, "Etats finaux")
+			for etat in $Automate/Etats.get_children():
+				if etat.final:
+					var child = tree.create_item(etats_finaux)
+					child.set_text(0, etat.nom)
+			
+			var ins = tree.create_item(root)
+			ins.set_text(0, "Instructions")
+			for i in $Automate/Instructions.get_children():
+				var child = tree.create_item(ins)
+				var text = "(" + i.etat_debut.nom + ", " + str(i.mot_lu) + ", " + i.etat_fin.nom + ")"
+				child.set_text(0, text)
+			
+			$GUI/DetailDialog.popup_centered()
+		1:#delete all
 			$GUI/DeleteAllDialog.popup_centered()
-		7:#Quitter
-			$GUI/QuitDialog.popup_centered()
+		2:
+			reorganize_positions()
+		3:
+			separer_etata_and_ins()
 
 func _on_SimplifyDialog_confirmed():
 	smiplifier()
@@ -599,19 +656,15 @@ func _on_DeterminateDialog_confirmed():
 func _on_LireButton_pressed():
 	read_word($GUI/LireDialog/MarginContainer2/VBoxContainer/HBoxContainer2/LireText.text)
 
-
 func _on_LireDialog_popup_hide():
 	for ins in $Automate/Instructions.get_children():
 			ins.color = WHITE
 
-
 func _on_MiroirDialog_confirmed():
 	miroir()
 
-
 func _on_ComplementaireDialog_confirmed():
 	complementaire()
-
 
 func _on_DeleteAllDialog_confirmed():
 	for ins in $Automate/Instructions.get_children():
@@ -619,6 +672,23 @@ func _on_DeleteAllDialog_confirmed():
 	for etat in $Automate/Etats.get_children():
 		etat.queue_free()
 
-
 func _on_QuitDialog_confirmed():
 	get_tree().quit()
+
+func _on_Fichier_pressed():
+	$GUI/PopupFichier.popup()
+
+func _on_PopupFichier_id_pressed(id):
+	match id:
+		1: #ouvrir
+			pass
+		4: #enregistrer sous
+			$GUI/SaveAsDialog.popup_centered_ratio(0.5)
+		3:
+			$GUI/QuitDialog.popup_centered()
+
+
+func _on_PopupAide_id_pressed(id):
+	match id:
+		1:#info
+			$GUI/AboutDialog.popup_centered()
