@@ -2,7 +2,7 @@
  
 Finite-state machine app made with [Godot Engine](https://github.com/godotengine/godot).
 
-Try it now : 
+![Try it now!](executables/web/Automates.html)
 
 ## Downloads
 
