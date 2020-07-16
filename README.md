@@ -8,9 +8,9 @@ Try it now :
 
 ![Windows](executables/windows/automates_win64.rar)
 
-![Mac OS](executables/windows/automates_macOS.rar)
+![Mac OS](executables/mac/automates_macOS.zip)
 
-![Linux](executables/windows/automates_linux_X11.rar)
+![Linux](executables/linux/automates_linux_X11.rar)
 
 ## Screenshots
 
