@@ -2,9 +2,7 @@
  
 Finite-state machine app made with [Godot Engine](https://github.com/godotengine/godot).
 
-[Try it now on your browser!](https://mrredam.github.io/Automates/)
-
-<a href="https://mrredam.github.io/Automates/" class="button pill">Launch</a>
+[Run on your browser now!](https://mrredam.github.io/Automates/)
 
 ## Downloads
 
