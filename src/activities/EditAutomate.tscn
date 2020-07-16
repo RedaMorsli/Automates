@@ -855,9 +855,9 @@ size_flags_vertical = 3
 margin_right = 307.0
 margin_bottom = 130.0
 access = 1
-current_dir = "user://C:/Users/pci/Documents/Projects/ESI/TP_THP"
+current_dir = "user://D:/user/Projects/ESI/Automates"
 current_file = "nome_automate.save"
-current_path = "user://C:/Users/pci/Documents/Projects/ESI/TP_THP/nome_automate.save"
+current_path = "user://D:/user/Projects/ESI/Automates/nome_automate.save"
 
 [node name="AboutDialog" type="AcceptDialog" parent="GUI"]
 margin_right = 83.0
