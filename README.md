@@ -6,11 +6,11 @@ Try it now :
 
 ## Downloads
 
-![Windows](executables/windows/automates_win64.zip)
+![Windows](executables/windows/automates_win64.rar)
 
-![Mac OS](executables/windows/automates_macOS.zip)
+![Mac OS](executables/windows/automates_macOS.rar)
 
-![Linux](executables/windows/automates_linux_X11.zip)
+![Linux](executables/windows/automates_linux_X11.rar)
 
 ## Screenshots
 
