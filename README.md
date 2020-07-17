@@ -1,3 +1,5 @@
+![](https://img.shields.io/github/v/release/MrRedaM/Automates?include_prereleases)
+
 # Automates
  
 Finite-state machine app made with [Godot Engine](https://github.com/godotengine/godot).
