@@ -6,11 +6,11 @@ Finite-state machine app made with [Godot Engine](https://github.com/godotengine
 
 ## Downloads
 
-![Windows](executables/windows/automates_win64.rar)
+[Windows](https://github.com/MrRedaM/Automates/releases/download/v0.9/automates_win64.rar)
 
-![Mac OS](executables/mac/automates_macOS.zip)
+[Mac OS](https://github.com/MrRedaM/Automates/releases/download/v0.9/automates_macOS.zip)
 
-![Linux](executables/linux/automates_linux_X11.rar)
+[Linux](https://github.com/MrRedaM/Automates/releases/download/v0.9/automates_linux_X11.rar)
 
 ## Screenshots
 
