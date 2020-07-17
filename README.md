@@ -1,10 +1,8 @@
-![](https://img.shields.io/github/v/release/MrRedaM/Automates?include_prereleases)
-
 # Automates
  
 Finite-state machine app made with [Godot Engine](https://github.com/godotengine/godot).
 
-[Run on your browser now!](https://mrredam.github.io/Automates/)
+[![Run](https://img.shields.io/github/v/release/MrRedaM/Automates?color=%23478CBF&include_prereleases&label=Run%20on%20your%20browser%20now%21&logo=html5&logoColor=%23fff&style=for-the-badge)](https://mrredam.github.io/Automates/)
 
 ## Downloads
 
